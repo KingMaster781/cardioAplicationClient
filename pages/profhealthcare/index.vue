@@ -1,5 +1,12 @@
 <template>
   <div>
+    <b-navbar type="dark" variant="dark">
+      <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
+      <b-navbar-nav class="ml-auto">
+          <b-nav-item href="#">Logout</b-nav-item>
+      </b-navbar-nav>
+    </b-navbar>
+    <br><br>
     <b-container>
       <b-table striped over :items="profHealthcares" :fields="fields">
       </b-table>
