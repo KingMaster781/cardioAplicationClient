@@ -1,29 +1,30 @@
 <template>
-  <div>
-    <!--<nuxt-link to="/patients" class="btn btn-link">Patients</nuxt-link>
-    <nuxt-link to="/profhealthcare" class="btn btn-link">Healthcare Professionals</nuxt-link>
-    <nuxt-link to="/admin" class="btn btn-link">Admin</nuxt-link>-->
-
     <div>
-      <b-navbar type="dark" variant="dark">
-        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
-        <b-navbar-nav class="ml-auto">
-          <!--<b-nav-item href="/auth/login">Login</b-nav-item>
-          <b-nav-item href="#">Sign In</b-nav-item>-->
-            <b-nav-item href="/patients">Patients</b-nav-item>
-            <b-nav-item href="/profhealthcare">Healthcare Professionals</b-nav-item>
-            <b-nav-item href="/admin/consultAdmins">Admins</b-nav-item>
-            <b-nav-item href="#">Logout</b-nav-item>
-        </b-navbar-nav>
+      <b-navbar type="dark" variant="primary">
+        <b-button variant="primary" v-b-toggle.sidebar-no-header>
+          <span class="navbar-toggler-icon"></span>
+        </b-button>
+        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>         
       </b-navbar>
-
+      <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow>
+        <template #default="{ hide }">
+          <div class="p-3">
+            <nav class="mb-3">
+              <b-nav vertical>
+                <b-dropdown-item href="/patients">Patients</b-dropdown-item>
+                <b-dropdown-item href="/profhealthcare">Healthcare Professionals</b-dropdown-item>
+                <b-dropdown-item href="/admin/consultAdmins">Admins</b-dropdown-item>
+              </b-nav>
+            </nav>
+            <b-button variant="primary" block @click="hide">Close Sidebar</b-button>
+          </div>
+        </template>
+      </b-sidebar>
     </div>
-
-  </div>
  </template>
 
 <script>
   export default {
-    
+
   }
 </script>
