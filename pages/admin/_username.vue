@@ -1,13 +1,13 @@
 <template>
     <div>
-      <b-navbar type="dark" variant="primary">
+        <b-navbar type="dark" variant="primary">
         <b-button variant="primary" v-b-toggle.sidebar-no-header>
           <span class="navbar-toggler-icon"></span>
         </b-button>
-        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand> 
+        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
-        </b-navbar-nav>        
+            <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
+        </b-navbar-nav>         
       </b-navbar>
       <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow backdrop backdrop-variant="dark">
         <template #default>
@@ -60,11 +60,35 @@
           </div>
         </template>
       </b-sidebar>
+      <br><br>
+        <b-container>
+            <h4>Detalhes do Admin</h4>
+                <p>Username: {{ admin.username}}</p>
+                <p>Name: {{ admin.name}}</p>
+                <p>Email: {{ admin.email}}</p>
+                <p>Password: {{ admin.password}}</p>
+            <nuxt-link to="/admin">Back</nuxt-link>
+        </b-container>
     </div>
  </template>
 
 <script>
   export default {
+      data() {
+        return {
+        admin: {},
+        fieldAdmins:['username','password','name','email','actions'],
+        }
+    },
+    computed: {
+        username() {
+        return this.$route.params.username
+        }
+    },
+    created() {
+        this.$axios.$get(`/api/admin/${this.username}`)
+        .then(admin => this.admin = admin || {})
+    },
     methods: {
       signOut(){
         this.$auth.logout()

@@ -1,13 +1,13 @@
 <template>
     <div>
-      <b-navbar type="dark" variant="primary">
+        <b-navbar type="dark" variant="primary">
         <b-button variant="primary" v-b-toggle.sidebar-no-header>
           <span class="navbar-toggler-icon"></span>
         </b-button>
-        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand> 
+        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
-        </b-navbar-nav>        
+            <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
+        </b-navbar-nav>         
       </b-navbar>
       <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow backdrop backdrop-variant="dark">
         <template #default>
@@ -60,11 +60,41 @@
           </div>
         </template>
       </b-sidebar>
+      <br><br>
+        <b-container>
+            <h4>Detalhes do Profissional de Saúde:</h4>
+              <p>Username: {{ healthcare.username}}</p>
+              <p>Name: {{ healthcare.name}}</p>
+              <p>Email: {{ healthcare.email}}</p>
+              <p>Password: {{ healthcare.password}}</p>
+            <b-table v-if="patients.length" striped over :items="patients" :fields="fieldPatients" />
+            <h5 v-else>Não tem utentes associados</h5>
+            <nuxt-link to="/admin">Back</nuxt-link>
+        </b-container>
     </div>
  </template>
 
 <script>
   export default {
+      data() {
+        return {
+          healthcare: {},
+          fieldhealthcare:['username','password','name','email','actions'],
+          fieldPatients:['username','name','email']
+        }
+    },
+    computed: {
+        username() {
+          return this.$route.params.username
+        },
+        patients(){
+          return this.healthcare.patients || []
+        }
+    },
+    created() {
+        this.$axios.$get(`/api/profhealthcares/${this.username}`)
+        .then(healthcare => this.healthcare = healthcare || {})
+    },
     methods: {
       signOut(){
         this.$auth.logout()

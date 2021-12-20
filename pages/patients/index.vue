@@ -3,7 +3,7 @@
     <b-navbar type="dark" variant="primary">
       <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
-          <b-nav-item href="#">Logout</b-nav-item>
+          <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <br><br>
@@ -28,6 +28,12 @@ export default {
         .then((patient) => {
           this.patients = patient
         })
-  }
+  },
+  methods: {
+      signOut(){
+        this.$auth.logout()
+        this.$router.push('/')
+      }
+    }
 }
 </script>

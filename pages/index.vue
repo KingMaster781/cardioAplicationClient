@@ -11,21 +11,25 @@
                 <h2 align="center">CardioApp</h2>
                 <br>
                 <b-form @submit.prevent="onSubmit">
-                <b-form-group label="Username" description="Enter your username">
-                    <b-input
-                        name="username"
-                        placeholder="Your username"/>
-                </b-form-group>
-                <b-form-group label="Password" description="Enter your password">
-                    <b-input
-                        name="password"
-                        type="password"
-                        placeholder="Your password" />
-                </b-form-group>
-                <b-button type="submit" class="btn btn-primary btn-lg btn-block">Login</b-button>
-                <br>
-                <h6 align="center"><a href="#" class="link-primary">You don't have an account, create one here</a></h6>
-            </b-form>
+                    <b-form-group label="Username" description="Enter your username">
+                        <b-input
+                            name="username"
+                            placeholder="Your username"
+                            v-model.trim = "username"
+                            required/>
+                    </b-form-group>
+                    <b-form-group label="Password" description="Enter your password">
+                        <b-input
+                            name="password"
+                            type="password"
+                            placeholder="Your password" 
+                            v-model.trim = "password"
+                            required/>
+                    </b-form-group>
+                    <b-button type="submit" class="btn btn-primary btn-lg btn-block">Login</b-button>
+                    <br>
+                    <h6 align="center"><a href="#" class="link-primary">You don't have an account, create one here</a></h6>
+                </b-form>
             </b-container>
         </div>
     </div>
@@ -34,15 +38,41 @@
 <script>
 
 export default{
+    auth: false,
     data(){
         return{
-            img : "@/img/background_1.jpg"
+            img : "@/img/background_1.jpg",
+            username: null,
+            password: null
         }
     },
     methods: {
-        login() {
-        
-        },
+        onSubmit()
+        {
+            let promise = this.$auth.loginWith('local', {
+                data: {
+                    username: this.username,
+                    password: this.password
+                }
+            })
+            promise.then(() => {
+                this.$toast.success('Já está logado').goAway(3000)
+                console.log(this.$auth.user)
+                if(this.$auth.user.groups.includes('Admin'))
+                {
+                    this.$router.push('/admin')
+                } else if(this.$auth.user.groups.includes('ProfHealthcare'))
+                {
+                    this.$router.push('/profhealthcare')
+                } else if(this.$auth.user.groups.includes('PatientUser'))
+                {
+                    this.$router.push('/patients')
+                }
+            })
+            promise.catch(() => {
+                this.$toast.error('Desculpe, você não pode fazer login. Garanta que as suas credenciais estão corretas').goAway(3000);
+            })
+        }
   },
 }
 </script>

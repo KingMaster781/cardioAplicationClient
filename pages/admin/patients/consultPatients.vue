@@ -1,13 +1,13 @@
 <template>
-    <div>
-      <b-navbar type="dark" variant="primary">
+  <div>
+   <b-navbar type="dark" variant="primary">
         <b-button variant="primary" v-b-toggle.sidebar-no-header>
           <span class="navbar-toggler-icon"></span>
         </b-button>
-        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand> 
+        <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
-        </b-navbar-nav>        
+            <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
+        </b-navbar-nav>         
       </b-navbar>
       <b-sidebar id="sidebar-no-header" aria-labelledby="sidebar-no-header-title" no-header shadow backdrop backdrop-variant="dark">
         <template #default>
@@ -60,16 +60,37 @@
           </div>
         </template>
       </b-sidebar>
-    </div>
- </template>
+    <br><br>
+    <b-container>
+      <b-table striped over :items="patients" :fields="fields">
+        <template v-slot:cell(actions)="row">
+          <nuxt-link class="btn btn-link" :to="`/admin/patients/${row.item.username}`">Details</nuxt-link>
+        </template>
+      </b-table>
+      <nuxt-link to="/admin">Back</nuxt-link>
+    </b-container>
+  </div>
+</template>
 
 <script>
-  export default {
-    methods: {
+export default {
+  data(){
+    return {
+      fields: ['username', 'name', 'email', 'actions'],
+      patients: []
+    }
+  },
+  created(){
+    this.$axios.$get('api/patientusers/')
+        .then((patient) => {
+          this.patients = patient
+        })
+  },
+  methods: {
       signOut(){
         this.$auth.logout()
         this.$router.push('/')
       }
     }
-  }
+}
 </script>
