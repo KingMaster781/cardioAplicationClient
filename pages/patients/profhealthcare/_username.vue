@@ -19,7 +19,6 @@
                     <b-dropdown-item href="/patients/prescriptions/consultPrescription" class="link-dark rounded">Consultar uma determinada prescrição</b-dropdown-item>
                     <b-dropdown-item href="/patients/prescriptions/consultPrescriptions" class="link-dark rounded">Consultar todas prescrições</b-dropdown-item>
                     <b-dropdown-item href="/patients/profhealthcare/consultProfhealthcares" class="link-dark rounded">Consultar profissionais de saúde</b-dropdown-item>  
-                    <b-dropdown-item href="/patients/profhealthcare/consultProfhealthcare" class="link-dark rounded">Consultar um determindado profissional de saúde</b-dropdown-item>
                   </b-card-body>
                 </b-collapse>
               </b-nav>
@@ -33,11 +32,34 @@
           </div>
         </template>
       </b-sidebar>
+    <br><br>
+        <b-container>
+            <h4>Detalhes do Profissional de Saúde:</h4>
+              <p>Username: {{ healthcare.username}}</p>
+              <p>Name: {{ healthcare.name}}</p>
+              <p>Email: {{ healthcare.email}}</p>
+            <nuxt-link to="/patients">Back</nuxt-link>
+        </b-container>
     </div>
  </template>
 
 <script>
   export default {
+      data() {
+        return {
+          healthcare: {},
+          fieldhealthcare:['username','password','name','email','actions'],
+        }
+    },
+    computed: {
+        username() {
+          return this.$route.params.username
+        },
+    },
+    created() {
+        this.$axios.$get(`/api/profhealthcares/${this.username}`)
+        .then(healthcare => this.healthcare = healthcare || {})
+    },
     methods: {
       signOut(){
         this.$auth.logout()

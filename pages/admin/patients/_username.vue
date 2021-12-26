@@ -46,7 +46,7 @@
                 <b-dropdown-item block v-b-toggle.ad variant="info">Tipo de Dados</b-dropdown-item>
                 <b-collapse id="ad" visible accordion="my-accordion" role="tabpanel">
                   <b-card-body>
-                    <b-dropdown-item href="/admin/createTypeDataBio" class="link-dark rounded">Lista de Admins</b-dropdown-item>
+                    <b-dropdown-item href="/admin/createTypeDataBio" class="link-dark rounded">Criar um Tipo de Dados</b-dropdown-item>
                   </b-card-body>
                 </b-collapse>
               </b-nav>
@@ -68,7 +68,6 @@
                 <p>Email: {{ patient.email}}</p>
                 <p>Password: {{ patient.password}}</p>
             <b-table v-if="profHealthcares.length" striped over :items="profHealthcares" :fields="fieldProfHealthcare" />
-            <h5 v-else>Não tem Profissionais de Saude associados</h5>
             <nuxt-link to="/admin">Back</nuxt-link>
         </b-container>
     </div>

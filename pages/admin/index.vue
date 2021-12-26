@@ -46,7 +46,7 @@
                 <b-dropdown-item block v-b-toggle.ad variant="info">Tipo de Dados</b-dropdown-item>
                 <b-collapse id="ad" visible accordion="my-accordion" role="tabpanel">
                   <b-card-body>
-                    <b-dropdown-item href="/admin/createTypeDataBio" class="link-dark rounded">Lista de Admins</b-dropdown-item>
+                    <b-dropdown-item href="/admin/createTypeDataBio" class="link-dark rounded">Criar um tipo de dado</b-dropdown-item>
                   </b-card-body>
                 </b-collapse>
               </b-nav>

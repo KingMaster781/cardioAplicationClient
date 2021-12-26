@@ -27,9 +27,7 @@
                             required/>
                     </b-form-group>
                     <b-button type="submit" class="btn btn-primary btn-lg btn-block">Login</b-button>
-                    <br>
-                    <h6 align="center"><a href="#" class="link-primary">You don't have an account, create one here</a></h6>
-                </b-form>
+                 </b-form>
             </b-container>
         </div>
     </div>

@@ -41,8 +41,14 @@
                 <p>Username: {{ patient.username}}</p>
                 <p>Name: {{ patient.name}}</p>
                 <p>Email: {{ patient.email}}</p>
-                <p>Password: {{ patient.password}}</p>
+                <h5>Lista de Profissionais de Saude que seguem este paciente:</h5>
             <b-table v-if="profHealthcares.length" striped over :items="profHealthcares" :fields="fieldProfHealthcare" />
+               <h5>Lista de Prescrições deste paciente:</h5>
+            <b-table v-if="prescription.length" striped over :items="prescription" :fields="fieldPrescription">
+              <template v-slot:cell(actions)="row">
+                <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${row.item.code}`">Details</nuxt-link>
+              </template>
+            </b-table>
             <nuxt-link to="/profhealthcare">Back</nuxt-link>
         </b-container>
     </div>
@@ -54,7 +60,8 @@
         return {
         patient: {},
         fieldpatient:['username','password','name','email','actions'],
-        fieldProfHealthcare:['username','name','email']
+        fieldProfHealthcare:['username','name','email'],
+        fieldPrescription:['code', 'duracao', 'insertionDate', 'vigor', 'programCode', 'actions'],
         }
     },
     computed: {
@@ -64,6 +71,10 @@
         profHealthcares()
         {
           return this.patient.profHealthcareDTOList || []
+        },
+        prescription()
+        {
+          return this.patient.prescriptionDTOList || []
         }
     },
     created() {
