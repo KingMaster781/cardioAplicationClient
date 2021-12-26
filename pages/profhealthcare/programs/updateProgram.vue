@@ -245,13 +245,12 @@
                     this.exerciOfProgram.forEach(exer=>{
                         this.$axios.$put('/api/program/' + this.code + '/exercises/',{code: exer.code})
                         .then(() => {
-                            console.log("success1")
+                            //console.log("success1")
                         })
                         .catch((e)=>{
                             this.errorMsg = e
                         })
                     })
-                    success=true
             })
             this.update()
         },
@@ -259,7 +258,7 @@
         enroll(code){
             this.$axios.$post('/api/program/' + this.code + '/exercises/',{code: code})
             .then(() => {
-                console.log("success2")
+                //console.log("success2")
             })
             .catch((e)=>{
                 this.errorMsg = e
