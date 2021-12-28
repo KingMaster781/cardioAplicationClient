@@ -11,16 +11,6 @@
                 :state="isUsernameValid"
             >
             <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Enter your username" />
-            </b-form-group>
-                <b-form-group
-                    id="password"
-                    description="The password is required"
-                    label-for="password"
-                    :invalid-feedback="invalidPasswordFeedback"
-                    :state="isPasswordValid"
-                >
-            <b-input v-model="password" :state="isPasswordValid" required placeholder="Enter your password" />
-            </b-form-group>
                 <b-form-group
                     id="name"
                     description="The name is required"
