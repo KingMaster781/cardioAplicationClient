@@ -1,7 +1,6 @@
 <template>
   <div>
     <admin-nav-bar/>
-    <br><br>
     <b-container>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group

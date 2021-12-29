@@ -72,12 +72,14 @@ export default {
       }
       return ''
     },
+
     isUsernameValid () {
       if (!this.invalidUsernameFeedback === null) {
         return null
       }
       return this.invalidUsernameFeedback === ''
     },
+
     invalidPasswordFeedback () {
       if (!this.password) {
         return null
@@ -88,12 +90,14 @@ export default {
       }
       return ''
     },
+
     isPasswordValid () {
       if (!this.invalidPasswordFeedback === null) {
         return null
       }
       return this.invalidUsernameFeedback === ''
     },
+
     invalidNameFeedback () {
       if (!this.name) {
         return null
@@ -104,12 +108,14 @@ export default {
       }
       return ''
     },
+
     isNameValid () {
       if (!this.invalidNameFeedback === null) {
         return null
       }
       return this.invalidNameFeedback === ''
     },
+
     invalidEmailFeedback () {
       if (!this.email) {
         return null
@@ -120,6 +126,7 @@ export default {
       }
       return ''
     },
+
     isEmailValid () {
       if (!this.invalidEmailFeedback === null) {
         return null
