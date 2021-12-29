@@ -238,19 +238,24 @@
 
     methods: {
     create() {
-        this.$axios.$post('/api/pescription', {
-            code: this.code,
-            duracao: this.duracao,
-            insertionDate: "23/12/2021", //temporario
-            programCode: this.program,
-            patientUser_username: this.patient
-        })
-        .then(() => {
-            this.$router.push('/profhealthcare')
-        })
-        .catch((error) => {
-            this.errorMsg = error.response.data
-        })
+      let dates= new Date()
+      let month = dates.getUTCMonth() + 1
+      let day = dates.getUTCDate()
+      let year = dates.getUTCFullYear()
+      let currentDate = day + "/" + month + "/" + year
+      this.$axios.$post('/api/pescription', {
+          code: this.code,
+          duracao: this.duracao,
+          insertionDate: currentDate,
+          programCode: this.program,
+          patientUser_username: this.patient
+      })
+      .then(() => {
+          this.$router.push('/profhealthcare')
+      })
+      .catch((error) => {
+          this.errorMsg = error.response.data
+      })
     },
       signOut(){
         this.$auth.logout()
