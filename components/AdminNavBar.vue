@@ -22,7 +22,7 @@
           <nav class="mb-3">
             <b-nav vertical>
               <b-dropdown-item block v-b-toggle.pa variant="info"
-                >Patients</b-dropdown-item
+                >Pacientes</b-dropdown-item
               >
               <b-collapse
                 id="pa"
@@ -44,7 +44,7 @@
                 </b-card-body>
               </b-collapse>
               <b-dropdown-item block v-b-toggle.he variant="info"
-                >Healthcare Professionals</b-dropdown-item
+                >Profissionais de Saude</b-dropdown-item
               >
               <b-collapse
                 id="he"
@@ -95,7 +95,7 @@
                 </b-card-body>
               </b-collapse>
               <b-dropdown-item block v-b-toggle.ad variant="info"
-                >Admins</b-dropdown-item
+                >Administradores</b-dropdown-item
               >
               <b-collapse
                 id="ad"
