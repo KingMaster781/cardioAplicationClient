@@ -20,7 +20,7 @@
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Enter a duraction of the prescription" />
+            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Enter a duraction of the prescription in days" />
             </b-form-group>
             <b-form-group
                 id="patient"
