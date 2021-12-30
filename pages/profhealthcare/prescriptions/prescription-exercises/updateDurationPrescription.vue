@@ -92,7 +92,7 @@
 
     methods: {
         update(){
-            this.$axios.$put('/api/pescription/' + this.code, {
+            this.$axios.$put('/api/prescription-exercises/' + this.code, {
                 duracao: this.duracao,
             })
             .then(() => {

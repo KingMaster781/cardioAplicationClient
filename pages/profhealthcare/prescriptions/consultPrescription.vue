@@ -19,9 +19,9 @@
             <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
         </form>
         <br>
-        <b-table striped over :items="prescriptions" :fields="fields">
+        <b-table v-if="prescriptions.length" striped over :items="prescriptions" :fields="fields">
           <template v-slot:cell(actions)="row">
-            <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${row.item.code}`">Details</nuxt-link>
+            <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${typePrescription}/${row.item.code}`">Details</nuxt-link>
           </template>
         </b-table>
         <nuxt-link to="/profhealthcare">Back</nuxt-link>
@@ -34,8 +34,9 @@
     data(){
         return {
             code: null,
-            fields: ['code', 'duracao', 'insertionDate', 'vigor', 'programCode', 'patientUser_username', 'actions'],
-            prescriptions: [],
+            fields: ['code', 'duracao', 'insertionDate', 'vigor', 'patientUser_username', 'actions'],
+            prescriptions: {},
+            typePrescription: null,
             errorMsg: null
         }
     },
@@ -68,12 +69,29 @@
 
     methods: {
         consult(){
-            this.$axios.$get('/api/pescription/' + this.code)
+            this.errorMsg=null
+            this.typePrescription=null
+            this.$axios.$get('/api/prescription-exercises/' + this.code)
                 .then((prescription) => {
+                    this.typePrescription="prescription-exercises"
                     this.prescriptions = [prescription]
                 })
-                .catch((error) => {
-                    this.errorMsg = error
+                .catch(() => {
+                    this.$axios.$get('/api/prescription-medics/' + this.code)
+                    .then((prescription) => {
+                        this.typePrescription="prescription-medics"
+                        this.prescriptions = [prescription]
+                    })
+                    .catch(() => {
+                        this.$axios.$get('/api/prescription-nutris/' + this.code)
+                        .then((prescription) => {
+                            this.typePrescription="prescription-nutris"
+                            this.prescriptions = [prescription]
+                        })
+                        .catch((error) => {
+                            this.errorMsg = error.data
+                        })
+                    })
                 })
         },
     

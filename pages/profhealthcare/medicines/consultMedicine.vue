@@ -19,9 +19,9 @@
                 <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
             </form>
             <br>
-            <b-table v-if="exercises.length" striped over :items="exercises" :fields="fields">
+            <b-table v-if="medicine.length" striped over :items="medicine" :fields="fields">
             <template v-slot:cell(actions)="row">
-                <nuxt-link class="btn btn-link" :to="`/profhealthcare/exercises/${row.item.code}`">Details</nuxt-link>
+                <nuxt-link class="btn btn-link" :to="`/profhealthcare/medicines/${row.item.code}`">Details</nuxt-link>
             </template>
             </b-table>
             <nuxt-link to="/profhealthcare">Back</nuxt-link>
@@ -34,8 +34,8 @@
     data(){
         return {
             code: null,
-            fields: ['code', 'name', 'descExercise', 'actions'],
-            exercises: [],
+            fields: ['code','name','description', 'warning', 'actions'],
+            medicine: [],
             errorMsg: null
         }
     },
@@ -68,9 +68,9 @@
 
     methods: {
         consult(){
-            this.$axios.$get('/api/exercise/' + this.code)
-                .then((exercise) => {
-                    this.exercises = [exercise]
+            this.$axios.$get('/api/medicine/' + this.code)
+                .then((medicine) => {
+                    this.medicine = [medicine]
                 })
                 .catch((error) => {
                     this.errorMsg = error

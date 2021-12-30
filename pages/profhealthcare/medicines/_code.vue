@@ -4,9 +4,10 @@
       <br>
       <b-container>
             <h4>Detalhes do Exercicio:</h4>
-                <p>Codigo: {{ exercise.code}}</p>
-                <p>Nome: {{ exercise.name}}</p>
-                <p>Descrição: {{ exercise.descExercise}}</p>
+                <p>Codigo: {{ medicine.code}}</p>
+                <p>Nome: {{ medicine.name}}</p>
+                <p>Descrição: {{ medicine.description}}</p>
+                <p>Avisos: {{ medicine.warning}}</p>
             <nuxt-link to="/profhealthcare">Back</nuxt-link>
         </b-container>
     </div>
@@ -16,8 +17,8 @@
   export default {
     data() {
         return {
-            exercise: {},
-            fieldExercise:['code','name','descExercise', 'actions'],
+            medicine: {},
+            fieldMedicine:['code','name','description', 'warning', 'actions'],
         }
     },
     computed: {
@@ -26,9 +27,9 @@
         }
     },
     created() {
-        this.$axios.$get('/api/exercise/' + this.code)
-        .then(exercises => {
-            this.exercise = exercises
+        this.$axios.$get('/api/medicine/' + this.code)
+        .then(medicine => {
+            this.medicine = medicine
         })
     },
     methods: {

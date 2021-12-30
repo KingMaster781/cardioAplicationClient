@@ -6,6 +6,7 @@
       </b-button>
       <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
+        <b-nav-item>Bem Vindo {{username}}</b-nav-item>
         <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -57,6 +58,45 @@
                         href="/profhealthcare/patients/updatePatient" 
                         class="link-dark rounded">
                             Atualiza um determinado Paciente
+                    </b-dropdown-item>
+                  </b-card-body>
+                </b-collapse>
+                <b-dropdown-item 
+                    block 
+                    v-b-toggle.me 
+                    variant="info">
+                        Medicamentos
+                </b-dropdown-item>
+                <b-collapse 
+                    id="me" 
+                    visible 
+                    accordion="my-accordion" 
+                    role="tabpanel">
+                  <b-card-body>
+                    <b-dropdown-item 
+                        href="/profhealthcare/medicines/consultMedicines" 
+                        class="link-dark rounded">
+                            Lista de Medicamentos
+                    </b-dropdown-item>
+                    <b-dropdown-item 
+                        href="/profhealthcare/medicines/consultMedicine" 
+                        class="link-dark rounded">
+                            Consultar um determinado Medicamento
+                    </b-dropdown-item>
+                    <b-dropdown-item 
+                        href="/profhealthcare/medicines/createMedicine" 
+                        class="link-dark rounded">
+                            Criar um Medicamento
+                    </b-dropdown-item>
+                    <b-dropdown-item 
+                        href="/profhealthcare/medicines/removeMedicine" 
+                        class="link-dark rounded">
+                            Remover um Medicamento
+                    </b-dropdown-item>
+                    <b-dropdown-item 
+                        href="/profhealthcare/medicines/updateMedicine" 
+                        class="link-dark rounded">
+                            Atualizar um Medicamento
                     </b-dropdown-item>
                   </b-card-body>
                 </b-collapse>
@@ -153,18 +193,68 @@
                     <b-dropdown-item 
                         href="/profhealthcare/prescriptions/consultPrescription" 
                         class="link-dark rounded">
-                            Consultar uma determinada Prescrição por Utilidador
+                            Consultar uma determinada Prescrição
                     </b-dropdown-item>
                     <b-dropdown-item 
-                        href="/profhealthcare/prescriptions/createPrescription" 
-                        class="link-dark rounded">
-                            Criar uma nova Prescrição
+                      block 
+                      v-b-toggle.pe 
+                      variant="info">
+                          Prescrições de Exercicio
                     </b-dropdown-item>
+                    <b-collapse 
+                      id="pe" 
+                      role="tabpanel">
+                      <b-dropdown-item 
+                          href="/profhealthcare/prescriptions/prescription-exercises/createPrescription" 
+                          class="link-dark rounded">
+                              Criar uma nova prescrição
+                      </b-dropdown-item>
+                      <b-dropdown-item 
+                          href="/profhealthcare/prescriptions/prescription-exercises/updateDurationPrescription" 
+                          class="link-dark rounded">
+                              Atualizar a duração de uma determinada prescrição
+                      </b-dropdown-item>
+                    </b-collapse>
                     <b-dropdown-item 
-                        href="/profhealthcare/prescriptions/updateDurationPrescription" 
-                        class="link-dark rounded">
-                            Atualizar a duração de uma determinada Prescrição
+                      block 
+                      v-b-toggle.pm 
+                      variant="info">
+                          Prescrições Medicas
                     </b-dropdown-item>
+                    <b-collapse 
+                      id="pm" 
+                      role="tabpanel">
+                      <b-dropdown-item 
+                          href="/profhealthcare/prescriptions/prescription-medics/createPrescription" 
+                          class="link-dark rounded">
+                              Criar uma nova prescrição
+                      </b-dropdown-item>
+                      <b-dropdown-item 
+                          href="/profhealthcare/prescriptions/prescription-medics/updateDurationPrescription" 
+                          class="link-dark rounded">
+                              Atualizar a duração de uma determinada prescrição
+                      </b-dropdown-item>
+                    </b-collapse>
+                    <b-dropdown-item 
+                      block 
+                      v-b-toggle.pn 
+                      variant="info">
+                          Prescrições de Nutrição
+                    </b-dropdown-item>
+                    <b-collapse 
+                      id="pn" 
+                      role="tabpanel">
+                      <b-dropdown-item 
+                          href="/profhealthcare/prescriptions/prescription-nutris/createPrescription" 
+                          class="link-dark rounded">
+                              Criar uma nova prescrição
+                      </b-dropdown-item>
+                      <b-dropdown-item 
+                          href="/profhealthcare/prescriptions/prescription-nutris/updateDurationPrescription" 
+                          class="link-dark rounded">
+                              Atualizar a duração de uma determinada prescrição
+                      </b-dropdown-item>
+                    </b-collapse>
                   </b-card-body>
                 </b-collapse>
             </b-nav>
@@ -185,6 +275,11 @@
 <script>
 export default {
     name: 'navBarProfH',
+    computed: {
+      username(){
+        return this.$auth.user.sub
+      }
+    },
     methods: {
       signOut(){
         this.$auth.logout()

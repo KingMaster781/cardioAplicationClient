@@ -181,7 +181,7 @@
       let day = dates.getUTCDate()
       let year = dates.getUTCFullYear()
       let currentDate = day + "/" + month + "/" + year
-      this.$axios.$post('/api/pescription', {
+      this.$axios.$post('/api/prescription-exercises', {
           code: this.code,
           duracao: this.duracao,
           insertionDate: currentDate,

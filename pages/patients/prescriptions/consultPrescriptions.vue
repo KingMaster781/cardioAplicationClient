@@ -3,9 +3,22 @@
       <patient-nav-bar/>
       <br><br>
       <b-container>
-        <b-table striped over :items="prescriptions" :fields="fields">
+        <h5 v-if="prescriptionsExercise.length">Prescrições de Exercicios:</h5>
+        <b-table v-if="prescriptionsExercise.length" striped over :items="prescriptionsExercise" :fields="fieldsExercise">
             <template v-slot:cell(actions)="row">
-                <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/${row.item.code}`">Details</nuxt-link>
+                <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/prescription-exercises/${row.item.code}`">Details</nuxt-link>
+            </template>
+        </b-table>
+        <h5 v-if="prescriptionsMedics.length">Prescrições Médicas</h5>
+        <b-table v-if="prescriptionsMedics.length" striped over :items="prescriptionsMedics" :fields="fieldsMedics">
+            <template v-slot:cell(actions)="row">
+                <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/prescription-medics/${row.item.code}`">Details</nuxt-link>
+            </template>
+        </b-table>
+        <h5 v-if="prescriptionsNutris.length">Prescrições de Nutrição</h5>
+        <b-table v-if="prescriptionsNutris.length" striped over :items="prescriptionsNutris" :fields="fieldsNutris">
+            <template v-slot:cell(actions)="row">
+                <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/prescription-nutris/${row.item.code}`">Details</nuxt-link>
             </template>
         </b-table>
         <nuxt-link to="/patients">Back</nuxt-link>
@@ -17,8 +30,12 @@
   export default {
     data(){
         return {
-            fields: ['code', 'duracao', 'insertionDate', 'vigor', 'programCode', 'actions'],
-            prescriptions: [],
+            fieldsExercise: ['code', 'duracao', 'insertionDate', 'vigor', 'programCode', 'actions'],
+            prescriptionsExercise: [],
+            fieldsMedics: ['code','duracao','insertionDate','vigor', 'actions'],
+            prescriptionsMedics: [],
+            fieldsNutris: ['code','duracao','insertionDate','vigor','descNutri','actions'],
+            prescriptionsNutris: [],
         }
     },
     computed: {
@@ -27,10 +44,18 @@
         }
     },
     created(){
-        this.$axios.$get('/api/patientusers/' + this.username + '/prescription')
-            .then((prescription) => {
-                this.prescriptions = prescription
-            })
+        this.$axios.$get('/api/patientusers/' + this.username + '/prescription-exercises')
+        .then((prescriptions1) => {
+            this.prescriptionsExercise = prescriptions1
+        })
+        this.$axios.$get('/api/patientusers/' + this.username + '/prescription-medics')
+        .then((prescriptions2) => {
+            this.prescriptionsMedics = prescriptions2
+        })
+        this.$axios.$get('/api/patientusers/' + this.username + '/prescription-nutris')
+        .then((prescriptions3) => {
+            this.prescriptionsNutris = prescriptions3
+        })
     },
     methods: {
       signOut(){
