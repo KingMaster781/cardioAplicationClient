@@ -44,6 +44,11 @@
                             Consultar profissionais de saúde
                     </b-dropdown-item>  
                   </b-card-body>
+                  <b-dropdown-item 
+                        href="/patients/profhealthcare/sendEmailProfHealthcare"
+                        class="link-dark rounded">
+                            Consultar profissionais de saúde
+                    </b-dropdown-item> 
                 </b-collapse>
             </b-nav>
           </nav>
@@ -68,7 +73,23 @@ export default {
         return this.$auth.user.sub
       }
     },
-
+    created(){
+      if(!this.$auth.user)
+      {
+        this.$router.push('/')
+      }
+      if(!this.$auth.user.groups.includes('PatientUser'))
+      {
+        if(this.$auth.user.groups.includes('ProfHealthcare'))
+        {
+          this.$router.push('/profhealthcare')
+        }
+        if(this.$auth.user.groups.includes('Admin'))
+        {
+          this.$router.push('/admin')
+        }
+      }
+    },
     methods: {
       signOut(){
         this.$auth.logout()

@@ -59,6 +59,11 @@
                         class="link-dark rounded">
                             Atualiza um determinado Paciente
                     </b-dropdown-item>
+                    <b-dropdown-item 
+                        href="/profhealthcare/patients/sendEmailPatientUser" 
+                        class="link-dark rounded">
+                            Enviar uma mensagem a um Paciente
+                    </b-dropdown-item>
                   </b-card-body>
                 </b-collapse>
                 <b-dropdown-item 
@@ -278,6 +283,23 @@ export default {
     computed: {
       username(){
         return this.$auth.user.sub
+      }
+    },
+    created(){
+      if(!this.$auth.user)
+      {
+        this.$router.push('/')
+      }
+      if(!this.$auth.user.groups.includes('ProfHealthcare'))
+      {
+        if(this.$auth.user.groups.includes('PatientUser'))
+        {
+          this.$router.push('/patients')
+        }
+        if(this.$auth.user.groups.includes('Admin'))
+        {
+          this.$router.push('/admin')
+        }
       }
     },
     methods: {

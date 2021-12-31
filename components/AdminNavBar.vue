@@ -42,6 +42,11 @@
                     class="link-dark rounded"
                     >Consultar um determinado Paciente</b-dropdown-item
                   >
+                  <b-dropdown-item
+                    href="/admin/patients/sendEmailPatientUser"
+                    class="link-dark rounded"
+                    >Enviar uma mensagem a um paciente
+                  </b-dropdown-item>
                 </b-card-body>
               </b-collapse>
               <b-dropdown-item block v-b-toggle.he variant="info"
@@ -85,14 +90,18 @@
                   <b-dropdown-item
                     href="/admin/healthcares/enrollPatient"
                     class="link-dark rounded"
-                    >Associar utente a Profissional de Saude</b-dropdown-item
-                  >
+                    >Associar utente a Profissional de Saude
+                  </b-dropdown-item>
                   <b-dropdown-item
                     href="/admin/healthcares/unrollPatient"
                     class="link-dark rounded"
-                    >Dessassociar utente de Profissional de
-                    Saude</b-dropdown-item
-                  >
+                    >Dessassociar utente de Profissional de Saude
+                  </b-dropdown-item>
+                  <b-dropdown-item
+                    href="/admin/healthcares/sendEmailProfHealthcare"
+                    class="link-dark rounded"
+                    >Enviar uma mensagem a um profissional de saude
+                  </b-dropdown-item>
                 </b-card-body>
               </b-collapse>
               <b-dropdown-item block v-b-toggle.ad variant="info"
@@ -170,6 +179,23 @@ export default {
     computed: {
       username(){
         return this.$auth.user.sub
+      }
+    },
+    created(){
+      if(!this.$auth.user)
+      {
+        this.$router.push('/')
+      }
+      if(!this.$auth.user.groups.includes('Admin'))
+      {
+        if(this.$auth.user.groups.includes('ProfHealthcare'))
+        {
+          this.$router.push('/profhealthcare')
+        }
+        if(this.$auth.user.groups.includes('PatientUser'))
+        {
+          this.$router.push('/patients')
+        }
       }
     },
     methods: {
