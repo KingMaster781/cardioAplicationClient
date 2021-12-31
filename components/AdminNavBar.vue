@@ -158,6 +158,33 @@
                   >
                 </b-card-body>
               </b-collapse>
+              <b-card-body>
+                <b-dropdown-item 
+                    href="/admin/medicines/consultMedicines" 
+                    class="link-dark rounded">
+                        Lista de Medicamentos
+                </b-dropdown-item>
+                <b-dropdown-item 
+                    href="/admin/medicines/consultMedicine" 
+                    class="link-dark rounded">
+                        Consultar um determinado Medicamento
+                </b-dropdown-item>
+                <b-dropdown-item 
+                    href="/admin/medicines/createMedicine" 
+                    class="link-dark rounded">
+                        Criar um Medicamento
+                </b-dropdown-item>
+                <b-dropdown-item 
+                    href="/admin/medicines/removeMedicine" 
+                    class="link-dark rounded">
+                        Remover um Medicamento
+                </b-dropdown-item>
+                <b-dropdown-item 
+                    href="/admin/medicines/updateMedicine" 
+                    class="link-dark rounded">
+                        Atualizar um Medicamento
+                </b-dropdown-item>
+              </b-card-body>
             </b-nav>
           </nav>
         </div>
