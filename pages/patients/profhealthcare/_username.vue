@@ -7,7 +7,8 @@
               <p>Username: {{ healthcare.username}}</p>
               <p>Name: {{ healthcare.name}}</p>
               <p>Email: {{ healthcare.email}}</p>
-            <nuxt-link to="/patients">Back</nuxt-link>
+              <br>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

@@ -11,7 +11,7 @@
                 <p>Código do Programa: {{prescription.programCode}}</p>
             <h5>Exercicios associados ao Programa:</h5>
             <b-table v-if="exercises.length" striped over :items="exercises" :fields="fieldExercises" />
-            <nuxt-link to="/patients">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

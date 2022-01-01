@@ -9,7 +9,8 @@
               <p>Password: {{ healthcare.password}}</p>
             <b-table v-if="patients.length" striped over :items="patients" :fields="fieldPatients" />
             <h5 v-else>Não tem utentes associados</h5>
-            <nuxt-link to="/admin">Back</nuxt-link>
+            <br>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

@@ -8,7 +8,8 @@
                 <p>Email: {{ patient.email}}</p>
                 <p>Password: {{ patient.password}}</p>
             <b-table v-if="profHealthcares.length" striped over :items="profHealthcares" :fields="fieldProfHealthcare" />
-            <nuxt-link to="/admin/patients/consultPatients">Back</nuxt-link>
+            <br>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

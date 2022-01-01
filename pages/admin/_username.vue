@@ -7,7 +7,8 @@
                 <p>Name: {{ admin.name}}</p>
                 <p>Email: {{ admin.email}}</p>
                 <p>Password: {{ admin.password}}</p>
-            <nuxt-link to="/admin">Back</nuxt-link>
+                <br>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

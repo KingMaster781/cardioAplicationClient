@@ -6,12 +6,12 @@
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter code's program" />
+                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do programa" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
@@ -21,10 +21,10 @@
         <br>
         <b-table striped over :items="programs" :fields="fields">
           <template v-slot:cell(actions)="row">
-            <nuxt-link class="btn btn-link" :to="`/profhealthcare/programs/${row.item.code}`">Details</nuxt-link>
+            <nuxt-link class="btn btn-link" :to="`/profhealthcare/programs/${row.item.code}`">Detalhes</nuxt-link>
           </template>
         </b-table>
-        <nuxt-link to="/profhealthcare">Back</nuxt-link>
+        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
     </b-container>
     </div>
  </template>

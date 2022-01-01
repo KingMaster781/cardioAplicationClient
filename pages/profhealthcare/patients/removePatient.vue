@@ -6,12 +6,12 @@
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="username"
-                description="The username is required"
+                description="O username é necessário"
                 label-for="username"
                 :invalid-feedback="invalidUsernameFeedback"
                 :state="isUsernameValid"
             >
-                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Enter your username" />
+                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do paciente" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
@@ -19,7 +19,7 @@
             <button class="btn btn-primary" @click.prevent="deleted" :disabled="!isFormValid">Remover</button>
         </form>
         <br>
-        <nuxt-link to="/profhealthcare">Back</nuxt-link>
+        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
     </b-container>
   </div>
 </template>

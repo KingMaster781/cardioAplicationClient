@@ -16,6 +16,8 @@
           <b-input v-model="typeOfData.unidadeValorQuantitativo" name="unidadeValorQuantitativo" />
         </b-form-group>
         <b-button @click="criar" class="btn btn-primary btn-lg btn-block">Criar</b-button>
+        <br>
+        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         <br />
       </b-form>
     </b-container>

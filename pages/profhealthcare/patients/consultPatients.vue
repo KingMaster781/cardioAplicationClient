@@ -5,10 +5,10 @@
     <b-container>
       <b-table striped over :items="patients" :fields="fields">
         <template v-slot:cell(actions)="row">
-          <nuxt-link class="btn btn-link" :to="`/profhealthcare/patients/${row.item.username}`">Details</nuxt-link>
+          <nuxt-link class="btn btn-link" :to="`/profhealthcare/patients/${row.item.username}`">Detalhes</nuxt-link>
         </template>
       </b-table>
-      <nuxt-link to="/profhealthcare">Back</nuxt-link>
+      <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
     </b-container>
   </div>
 </template>

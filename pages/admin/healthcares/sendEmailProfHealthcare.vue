@@ -28,6 +28,8 @@
         <nuxt-link to="/admin">Back</nuxt-link>
         &nbsp;
         <button class="btn btn-primary" @click.prevent="send" :disabled="!isFormValid">Enviar</button>
+        <br>
+        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </form>
     </b-container>
   </div>

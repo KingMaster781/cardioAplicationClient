@@ -18,7 +18,7 @@
                 {{ msg }}
             </p>
             <br>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

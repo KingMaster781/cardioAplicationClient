@@ -3,12 +3,13 @@
       <admin-nav-bar/>
       <br>
       <b-container>
-            <h4>Detalhes do Exercicio:</h4>
+            <h4>Detalhes do Medicamento:</h4>
                 <p>Codigo: {{ medicine.code}}</p>
                 <p>Nome: {{ medicine.name}}</p>
                 <p>Descrição: {{ medicine.description}}</p>
                 <p>Avisos: {{ medicine.warning}}</p>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <br>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

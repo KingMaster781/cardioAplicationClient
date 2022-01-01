@@ -12,10 +12,10 @@
                <h5>Lista de Prescrições deste paciente:</h5>
             <b-table v-if="prescription.length" striped over :items="prescription" :fields="fieldPrescription">
               <template v-slot:cell(actions)="row">
-                <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${row.item.code}`">Details</nuxt-link>
+                <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${row.item.code}`">Detalhes</nuxt-link>
               </template>
             </b-table>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

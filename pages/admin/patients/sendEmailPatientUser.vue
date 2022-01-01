@@ -11,7 +11,7 @@
             :invalid-feedback="invalidUsernameFeedback"
             :state="isUsernameValid"
         >
-          <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Escreva o username do Profissional de Saúde" />
+          <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Escreva o username do Paciente" />
         </b-form-group>
         <b-form-group
             id="subject"
@@ -28,6 +28,8 @@
         <nuxt-link to="/admin">Back</nuxt-link>
         &nbsp;
         <button class="btn btn-primary" @click.prevent="send" :disabled="!isFormValid">Enviar</button>
+        <br>
+        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </form>
     </b-container>
   </div>

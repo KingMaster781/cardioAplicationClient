@@ -6,30 +6,30 @@
             <form @submit.prevent="create" :disabled="!isFormValid">
                 <b-form-group
                     id="code"
-                    description="The code is required"
+                    description="O código é necessário"
                     label-for="code"
                     :invalid-feedback="invalidCodeFeedback"
                     :state="isCodeValid"
                 >
-                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter a code to program" />
+                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do programa" />
                 </b-form-group>
                     <b-form-group
                         id="name"
-                        description="The name is required"
+                        description="O nome é necessário"
                         label-for="name"
                         :invalid-feedback="invalidNameFeedback"
                         :state="isNameValid"
                     >
-                    <b-input v-model.trim="name" :state="isNameValid" required placeholder="Enter a name to program" />
+                    <b-input v-model.trim="name" :state="isNameValid" required placeholder="Insira o nome do programa" />
                 </b-form-group>
                     <b-form-group
                         id="desc"
-                        description="The program's description is required"
+                        description="A descrição do programa é necessária"
                         label-for="desc"
                         :invalid-feedback="invalidDescFeedback"
                         :state="isDescValid"
                     >
-                    <b-input v-model.trim="desc" :state="isDescValid" placeholder="Enter a description to exercise" />
+                    <b-input v-model.trim="desc" :state="isDescValid" placeholder="Insira a descrição do programa" />
                 </b-form-group>
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
@@ -47,9 +47,9 @@
                         ></b-form-checkbox-group>
                     </b-form-group>
                 <br>
-                <button class="btn btn-primary" @click.prevent="unroll" :disabled="!isFormValid">UPDATE</button>
+                <button class="btn btn-primary" @click.prevent="unroll" :disabled="!isFormValid">Atualizar</button>
                 <br>
-                <nuxt-link to="/profhealthcare">Back</nuxt-link>
+                <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
             </form>
         </b-container>
     </div>

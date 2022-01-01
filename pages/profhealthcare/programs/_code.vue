@@ -13,7 +13,7 @@
                     <nuxt-link class="btn btn-link" :to="`/profhealthcare/exercises/${row.item.code}`">Details</nuxt-link>
                 </template>
             </b-table>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

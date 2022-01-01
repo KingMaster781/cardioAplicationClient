@@ -10,7 +10,7 @@
                 <p>Estado: {{ prescription.vigor}}</p>
             <h5>Medicamentos associados a esta Prescrição:</h5>
             <b-table v-if="medicines.length" striped over :items="medicines" :fields="fieldMedicines" />
-            <nuxt-link to="/patients">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

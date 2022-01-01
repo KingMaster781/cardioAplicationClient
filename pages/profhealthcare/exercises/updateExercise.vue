@@ -6,37 +6,37 @@
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter a code to exercise" />
+            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do exercício" />
             </b-form-group>
                 <b-form-group
                     id="name"
-                    description="The name is required"
+                    description="O nome é necessário"
                     label-for="name"
                     :invalid-feedback="invalidNameFeedback"
                     :state="isNameValid"
                 >
-                <b-input v-model.trim="name" :state="isNameValid" required placeholder="Enter a name to exercise" />
+                <b-input v-model.trim="name" :state="isNameValid" required placeholder="Insira o nome do exercício" />
             </b-form-group>
                 <b-form-group
                     id="desc"
-                    description="The exercises description is required"
+                    description="A descrição do exercício é necessária"
                     label-for="desc"
                     :invalid-feedback="invalidDescFeedback"
                     :state="isDescValid"
                 >
-                <b-input v-model.trim="desc" :state="isDescValid" placeholder="Enter a description to exercise" />
+                <b-input v-model.trim="desc" :state="isDescValid" placeholder="Insira a descrição do exercício" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="update" :disabled="!isFormValid">UPDATE</button>
+            <button class="btn btn-primary" @click.prevent="update" :disabled="!isFormValid">Atualizar</button>
             <br>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </form>
     </b-container>
     </div>

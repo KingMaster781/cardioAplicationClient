@@ -6,25 +6,25 @@
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter a code to the prescription" />
+            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código da prescrição" />
             </b-form-group>
             <b-form-group
                 id="duracao"
-                description="The code is required"
+                description="A duração é necessária"
                 label-for="duracao"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Enter a duraction of the prescription in days" />
+            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Insira a duração da prescrição em dias" />
             </b-form-group>
             <b-form-group
                 id="patient"
-                description="The patient is required"
+                description="O paciente é necessário"
                 label-for="patient"
                 :invalid-feedback="invalidPatientFeedback"
                 :state="isPatientValid"
@@ -38,7 +38,7 @@
             </b-form-group>
             <b-form-group
                 id="program"
-                description="The program is required"
+                description="O programa é necessário"
                 label-for="program"
                 :invalid-feedback="invalidProgramFeedback"
                 :state="isProgramValid"
@@ -53,9 +53,9 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">CREATE</button>
+            <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">Criar</button>
             <br>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </form>
       </b-container>
     </div>

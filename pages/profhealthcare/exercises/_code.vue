@@ -7,7 +7,7 @@
                 <p>Codigo: {{ exercise.code}}</p>
                 <p>Nome: {{ exercise.name}}</p>
                 <p>Descrição: {{ exercise.descExercise}}</p>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

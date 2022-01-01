@@ -6,28 +6,28 @@
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter a code to the prescription" />
+            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código da prescrição" />
             </b-form-group>
             <b-form-group
                 id="duracao"
-                description="The duraction is required"
+                description="A duração é necessária"
                 label-for="duracao"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Enter a duraction of the prescription" />
+            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Insira a duração da prescrição em dias" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="update" :disabled="!isFormValid">UPDATE</button>
+            <button class="btn btn-primary" @click.prevent="analiseUpdateisPermited" :disabled="!isFormValid">Atualizar</button>
             <br>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </form>
       </b-container>
     </div>
@@ -91,6 +91,22 @@
     },
 
     methods: {
+        analiseUpdateisPermited(){
+            this.$axios.$get('/api/prescription-nutris/' + this.code)
+            .then((prescription) => {
+                if(prescription.vigor==="Está em vigor")
+                {
+                    this.update()
+                }
+                else
+                {
+                    this.errorMsg = "Esta prescrição já não se encontra em vigor"
+                }
+            })
+            .catch((error) => {
+                this.errorMsg = error.response.data
+            })
+        },
         update(){
             this.$axios.$put('/api/prescription-nutris/' + this.code, {
                 duracao: this.duracao,

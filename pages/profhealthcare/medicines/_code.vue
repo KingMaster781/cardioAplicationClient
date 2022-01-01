@@ -8,7 +8,7 @@
                 <p>Nome: {{ medicine.name}}</p>
                 <p>Descrição: {{ medicine.description}}</p>
                 <p>Avisos: {{ medicine.warning}}</p>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </b-container>
     </div>
  </template>

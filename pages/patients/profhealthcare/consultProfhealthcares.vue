@@ -5,9 +5,11 @@
       <b-container>
           <b-table v-if="profHealthcares.length" striped over :items="profHealthcares" :fields="fieldProfHealthcare">
             <template v-slot:cell(actions)="row">
-                <nuxt-link class="btn btn-link" :to="`/patients/profhealthcare/${row.item.username}`">Details</nuxt-link>
+                <nuxt-link class="btn btn-link" :to="`/patients/profhealthcare/${row.item.username}`">Detalhes</nuxt-link>
             </template>
           </b-table>
+          <br>
+          <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
       </b-container>
     </div>
  </template>
