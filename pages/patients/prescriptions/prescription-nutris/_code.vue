@@ -7,8 +7,8 @@
             <br>
             <h4>Detalhes da Prescrição:</h4>
                 <p>Codigo: {{ prescription.code}}</p>
-                <p>Duração: {{ prescription.duracao}} meses</p>
-                <p>Data de Inserção: {{ prescription.insertionDate}}</p>
+                <p>Duração (Dias em Falta): {{ prescription.duracao}} dias</p>
+                <p>Data de Inserção: {{ prescription.oldInsertionDate}}</p>
                 <p>Estado: {{ prescription.vigor}}</p>
                 <p>Descrição de Nutrição a seguir: {{ prescription.descNutri}}</p>
             <br>

@@ -13,7 +13,7 @@
       <b-navbar-brand tag="h1" class="mb-0" @click="initialPage">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
         <b-nav-item>Bem Vindo {{username}}</b-nav-item>
-        <b-nav-item @click.prevent="signOut"></b-nav-item>
+        <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <div id="side-menu" class="side-nav" :class="{ sidenavopen: opened }">

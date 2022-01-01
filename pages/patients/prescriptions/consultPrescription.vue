@@ -36,7 +36,7 @@
     data(){
         return {
             code: null,
-            fields: ['code', 'duracao', 'insertionDate', 'vigor', 'actions'],
+            fields: ['code', 'duracao', 'oldInsertionDate', 'vigor', 'actions'],
             prescriptions: [],
             errorMsg: null,
             typePrescription: null

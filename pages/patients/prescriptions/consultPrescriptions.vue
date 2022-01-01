@@ -38,11 +38,11 @@
   export default {
     data(){
         return {
-            fieldsExercise: ['code', 'duracao', 'insertionDate', 'vigor', 'programCode', 'actions'],
+            fieldsExercise: ['code', 'duracao', 'oldInsertionDate', 'vigor', 'programCode', 'actions'],
             prescriptionsExercise: [],
-            fieldsMedics: ['code','duracao','insertionDate','vigor', 'actions'],
+            fieldsMedics: ['code','duracao','oldInsertionDate','vigor', 'actions'],
             prescriptionsMedics: [],
-            fieldsNutris: ['code','duracao','insertionDate','vigor','descNutri','actions'],
+            fieldsNutris: ['code','duracao','oldInsertionDate','vigor','descNutri','actions'],
             prescriptionsNutris: [],
         }
     },
