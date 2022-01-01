@@ -1,17 +1,8 @@
 <template>
     <div>
-        <admin-nav-bar/>
+        <prof-health-nav-bar/>
         <b-container>
             <form @submit.prevent="enroll" :disabled="!isFormValid">
-                <b-form-group
-                id="username"
-                description="O username é necessário"
-                label-for="username"
-                :invalid-feedback="invalidUsernameFeedback"
-                :state="isUsernameValid"
-                >
-                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do profissional de saúde" />
-                </b-form-group>
                 <b-form-group
                 id="patient"
                 description="O paciente é necessário"
@@ -21,7 +12,7 @@
                 >
                 <b-select v-model="patientUsername" :options="patients" :state="isPatientValid" required value-field="username" text-field="name">
                     <template v-slot:first>
-                    <option :value="null" disabled>-- Por favor, selecione o paciente --
+                    <option :value="null" disabled>-- Selecione o paciente a Dessassociar --
                     </option>
                     </template>
                 </b-select>
@@ -29,7 +20,7 @@
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="enroll" :disabled="!isFormValid">Associar Paciente</button>
+                <button class="btn btn-primary" @click.prevent="unroll" :disabled="!isFormValid">Dessassociar Paciente</button>
                 <br><br>
                 <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
             </form>
@@ -40,36 +31,21 @@
 export default {
   data() {
     return {
-      username: null,
       patients:[],
       patientUsername: null,
       errorMsg: false
     }
   },
   created() {
-    this.$axios.$get('/api/patientusers')
-      .then(patient => {
-        this.patients = patient
-      })
+    this.$axios.$get(`/api/profhealthcares/${this.$auth.user.sub}`)
+        .then(healthcare =>  {
+          this.patients = healthcare.patients || []
+        })
   },
 
   computed: {
-    invalidUsernameFeedback () {
-      if (!this.username) {
-        return null
-      }
-      let usernameLen = this.username.length
-      if (usernameLen < 3 || usernameLen > 30) {
-        return 'The username must be between [3, 30] characters.'
-      }
-      return ''
-    },
-
-    isUsernameValid () {
-      if (!this.invalidUsernameFeedback === null) {
-        return null
-      }
-      return this.invalidUsernameFeedback === ''
+    username(){
+        return this.$auth.user.sub
     },
 
     invalidPatientFeedback () {
@@ -91,9 +67,6 @@ export default {
     },
 
     isFormValid () {
-      if (! this.isUsernameValid) {
-        return false
-      }
       if (! this.isPatientValid) {
         return false
       }
@@ -102,10 +75,11 @@ export default {
   },
 
   methods: {
-    enroll() {
-      this.$axios.$post('/api/profhealthcares/' + this.username + '/enroll-patient',{username: this.patientUsername})
+    unroll() {
+      console.log(this.$auth.user.groups)
+      this.$axios.$put('/api/profhealthcares/' + this.username + '/unroll-patient/',{username: this.patientUsername})
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/profhealthcare')
         })
         .catch((e)=>{
           this.errorMsg = e.response.data

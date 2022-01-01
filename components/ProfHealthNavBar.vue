@@ -12,7 +12,7 @@
       </span>
       <b-navbar-brand tag="h1" class="mb-0" @click="initialPage">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
-        <b-nav-item class="navbar-nav">Bem Vindo {{username}}</b-nav-item>
+        <b-nav-item>Bem Vindo {{username}}</b-nav-item>
         <b-nav-item class="navbar-nav" @click.prevent="signOut">Logout</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
@@ -25,6 +25,8 @@
           <a href="/profhealthcare/patients/createPatient">Criar um Paciente</a>
           <a href="/profhealthcare/patients/removePatient">Remover um determinado Paciente</a>
           <a href="/profhealthcare/patients/updatePatient">Atualiza um determinado Paciente</a>
+          <a href="/profhealthcare/patients/enrollPatient">Associar utente</a>
+          <a href="/profhealthcare/patients/unrollPatient">Dessassociar utente</a>
           <a href="/profhealthcare/patients/sendEmailPatientUser">Enviar uma mensagem a um Paciente</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.me><a>Medicamentos</a></div>
@@ -69,6 +71,7 @@
         </b-collapse>
       </div>
     </div>
+    <br><br>
 </div>
 </template>
 

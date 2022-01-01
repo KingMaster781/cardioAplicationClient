@@ -103,7 +103,7 @@ export default {
 
   methods: {
     unroll() {
-      this.$axios.$put('/api/profhealthcares/' + this.username + '/patients/',{username: this.patientUsername})
+      this.$axios.$put('/api/profhealthcares/' + this.username + '/unroll-patient/',{username: this.patientUsername})
         .then(() => {
           this.$router.push('/admin')
         })
