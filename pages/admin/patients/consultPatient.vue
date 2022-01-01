@@ -2,6 +2,7 @@
   <div>
     <admin-nav-bar/>
     <b-container>
+        <h2>Consultar um Determinado Paciente</h2>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="username"
@@ -15,15 +16,16 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
         </form>
         <br>
-        <b-table striped over :items="patient" :fields="fieldPatients">
+        <b-table v-if="patient.length" striped over :items="patient" :fields="fieldPatients">
           <template v-slot:cell(actions)="row">
             <nuxt-link class="btn btn-link" :to="`/admin/patients/${row.item.username}`">Detalhes</nuxt-link>
           </template>
         </b-table>
-        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+        <br>
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>

@@ -1,8 +1,9 @@
 <template>
     <div>
       <prof-health-nav-bar/>
-      <br><br>
       <b-container>
+        <h2>Remover um Determinado Programa</h2>
+        <br>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="code"
@@ -16,9 +17,9 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="remove" :disabled="!isFormValid">Remover</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="remove" :disabled="!isFormValid">Remover</button>
             <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
       </b-container>
     </div>

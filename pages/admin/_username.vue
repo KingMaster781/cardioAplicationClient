@@ -2,13 +2,15 @@
     <div>
         <admin-nav-bar/>
         <b-container>
+            <h2>Detalhes do Admin {{ admin.username}}</h2>
+            <br>
             <h4>Detalhes do Admin</h4>
                 <p>Username: {{ admin.username}}</p>
                 <p>Name: {{ admin.name}}</p>
                 <p>Email: {{ admin.email}}</p>
                 <p>Password: {{ admin.password}}</p>
                 <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>

@@ -3,6 +3,8 @@
       <admin-nav-bar/>
         <br><br>
         <b-container>
+            <h2>Consultar um Determindo Medicamento</h2>
+            <br>
             <form @submit.prevent="consult" :disabled="!isFormValid">
                 <b-form-group
                     id="code"
@@ -16,7 +18,7 @@
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
             </form>
             <br>
             <b-table v-if="medicine.length" striped over :items="medicine" :fields="fields">
@@ -24,7 +26,8 @@
                 <nuxt-link class="btn btn-link" :to="`/admin/medicines/${row.item.code}`">Detalhes</nuxt-link>
             </template>
             </b-table>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <br>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>
@@ -73,7 +76,7 @@
                     this.medicine = [medicine]
                 })
                 .catch((error) => {
-                    this.errorMsg = error
+                    this.errorMsg = error.response.data
                 })
         },
 

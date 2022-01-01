@@ -2,6 +2,8 @@
     <div>
         <prof-health-nav-bar/>
         <b-container>
+            <h2>Dessassociar um Paciente</h2>
+            <br>
             <form @submit.prevent="enroll" :disabled="!isFormValid">
                 <b-form-group
                 id="patient"
@@ -20,9 +22,9 @@
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="unroll" :disabled="!isFormValid">Dessassociar Paciente</button>
-                <br><br>
-                <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="unroll" :disabled="!isFormValid">Dessassociar Paciente</button>
+                <br>
+                <p align = "center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
             </form>
         </b-container>
     </div>

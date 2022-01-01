@@ -1,8 +1,9 @@
 <template>
     <div>
       <prof-health-nav-bar/>
-      <br><br>
       <b-container>
+            <h2>Atualizar um Determinado Programa</h2>
+            <br>
             <form @submit.prevent="create" :disabled="!isFormValid">
                 <b-form-group
                     id="code"
@@ -47,9 +48,9 @@
                         ></b-form-checkbox-group>
                     </b-form-group>
                 <br>
-                <button class="btn btn-primary" @click.prevent="unroll" :disabled="!isFormValid">Atualizar</button>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="unroll" :disabled="!isFormValid">Atualizar</button>
                 <br>
-                <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+                <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
             </form>
         </b-container>
     </div>

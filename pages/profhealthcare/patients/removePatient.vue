@@ -3,6 +3,8 @@
     <prof-health-nav-bar/>
     <br><br>
     <b-container>
+        <h2>Remover um Determinado Paciente</h2>
+        <br>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="username"
@@ -16,10 +18,10 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="deleted" :disabled="!isFormValid">Remover</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="deleted" :disabled="!isFormValid">Remover</button>
         </form>
         <br>
-        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>

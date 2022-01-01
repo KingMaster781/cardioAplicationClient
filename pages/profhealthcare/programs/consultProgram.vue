@@ -1,8 +1,9 @@
 <template>
     <div>
       <prof-health-nav-bar/>
-      <br><br>
       <b-container>
+        <h2>Consultar um determinado Programa</h2>
+        <br>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="code"
@@ -16,15 +17,16 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
         </form>
         <br>
-        <b-table striped over :items="programs" :fields="fields">
+        <b-table v-if="programs.length" striped over :items="programs" :fields="fields">
           <template v-slot:cell(actions)="row">
             <nuxt-link class="btn btn-link" :to="`/profhealthcare/programs/${row.item.code}`">Detalhes</nuxt-link>
           </template>
         </b-table>
-        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+        <br>
+        <p aling="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
     </div>
  </template>

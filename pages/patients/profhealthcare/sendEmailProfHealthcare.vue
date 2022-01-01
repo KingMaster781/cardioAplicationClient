@@ -2,7 +2,8 @@
   <div>
     <patient-nav-bar/>
     <b-container>
-        <h1>Enviar uma mensagem para um Profissional de Saúde</h1>
+        <h2>Enviar uma mensagem para um Profissional de Saúde</h2>
+        <br>
         <form @submit.prevent="send">
         <b-form-group
             id="username"
@@ -25,11 +26,9 @@
         >
           <textarea v-model="message" class="form-control" name="message" placeholder="Escreva a sua mensagem"></textarea>
         </b-form-group>
-        <nuxt-link to="/admin">Back</nuxt-link>
-        &nbsp;
-        <button class="btn btn-primary" @click.prevent="send" :disabled="!isFormValid">Enviar</button>
+        <button class="btn btn-primary btn-lg btn-block" @click.prevent="send" :disabled="!isFormValid">Enviar</button>
         <br>
-        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
     </b-container>
   </div>
@@ -84,10 +83,6 @@ export default {
       })
     },
     methods: {
-      signOut(){
-        this.$auth.logout()
-        this.$router.push('/')
-      }
     }
   }
 }

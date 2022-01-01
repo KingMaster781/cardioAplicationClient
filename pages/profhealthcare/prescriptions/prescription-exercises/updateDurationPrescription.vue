@@ -3,6 +3,8 @@
       <prof-health-nav-bar/>
       <br><br>
       <b-container>
+        <h2>Atualizar uma Determinada Prescrição de Exercícios</h2>
+        <br>
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="code"
@@ -25,9 +27,9 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="analiseUpdateisPermited" :disabled="!isFormValid">Atualizar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="analiseUpdateisPermited" :disabled="!isFormValid">Atualizar</button>
             <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
       </b-container>
     </div>

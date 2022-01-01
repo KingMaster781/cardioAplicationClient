@@ -2,6 +2,8 @@
     <div>
         <admin-nav-bar/>
         <b-container>
+            <h2>Consultar Detalhes do Paciente {{ patient.username}}</h2>
+            <br>
             <h4>Detalhes do Paciente:</h4>
                 <p>Username: {{ patient.username}}</p>
                 <p>Name: {{ patient.name}}</p>
@@ -9,7 +11,7 @@
                 <p>Password: {{ patient.password}}</p>
             <b-table v-if="profHealthcares.length" striped over :items="profHealthcares" :fields="fieldProfHealthcare" />
             <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>

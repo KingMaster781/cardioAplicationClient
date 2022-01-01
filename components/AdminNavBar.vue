@@ -1,6 +1,6 @@
 <template>
 <div id="allTheNav">
-    <b-navbar id="navigator" type="dark" class="navbar" :class="{ navbaropen: opened }">
+    <b-navbar id="navigator" type="dark" :class="{ navbaropen: opened }">
       <span class="open-slide">
         <a href="#" @click="opened = !opened">
           <div>
@@ -13,7 +13,7 @@
       <b-navbar-brand tag="h1" class="mb-0" @click="initialPage">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
         <b-nav-item>Bem Vindo {{username}}</b-nav-item>
-        <b-nav-item class="navbar-nav" @click.prevent="signOut">Logout</b-nav-item>
+        <b-nav-item @click.prevent="signOut"></b-nav-item>
       </b-navbar-nav>
     </b-navbar>
     <div id="side-menu" class="side-nav" :class="{ sidenavopen: opened }">
@@ -53,7 +53,7 @@
           <a href="/admin/medicines/consultMedicine">Consultar um determinado Medicamento</a>
           <a href="/admin/medicines/createMedicine">Criar um Medicamento</a>
           <a href="/admin/medicines/removeMedicine">Remover um Medicamento</a>
-          <a href="/admin/medicines/updateMedicine">Enviar uma mensagem a um paciente</a>
+          <a href="/admin/medicines/updateMedicine">Atualiza um determinado Medicamento</a>
         </b-collapse>
       </div>
     </div>
@@ -72,6 +72,9 @@ export default {
     computed: {
       username(){
         return this.$auth.user.sub
+      },
+      textDrop(){
+        return "Bem Vindo" + this.username
       }
     },
     created(){

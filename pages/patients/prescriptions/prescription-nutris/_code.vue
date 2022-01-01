@@ -3,13 +3,16 @@
       <patient-nav-bar/>
       <br>
       <b-container>
+            <h2>Detalhes da Prescrição {{ prescription.code}}</h2>
+            <br>
             <h4>Detalhes da Prescrição:</h4>
                 <p>Codigo: {{ prescription.code}}</p>
                 <p>Duração: {{ prescription.duracao}} meses</p>
                 <p>Data de Inserção: {{ prescription.insertionDate}}</p>
                 <p>Estado: {{ prescription.vigor}}</p>
                 <p>Descrição de Nutrição a seguir: {{ prescription.descNutri}}</p>
-            <nuxt-link to="/patients">Back</nuxt-link>
+            <br>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>

@@ -3,6 +3,8 @@
     <prof-health-nav-bar/>
     <br><br>
     <b-container>
+      <h2>Criar um Paciente</h2>
+      <br>
       <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="username"
@@ -43,9 +45,9 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">Criar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="create" :disabled="!isFormValid">Criar</button>
             <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
     </b-container>
   </div>
@@ -174,7 +176,6 @@ export default {
     enroll() {
       this.$axios.$post('/api/profhealthcares/' + this.docUsername + '/patients/',{username: this.username})
         .then(() => {
-          console.log("bom dia")
           this.$router.push('/profhealthcare')
         })
         .catch((e)=>{

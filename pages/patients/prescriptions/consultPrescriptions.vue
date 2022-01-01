@@ -3,25 +3,33 @@
       <patient-nav-bar/>
       <br><br>
       <b-container>
-        <h5 v-if="prescriptionsExercise.length">Prescrições de Exercicios:</h5>
+        <h2>Consultar todas as minhas Prescrições</h2>
+        <br>
+        <h5>Prescrições de Exercicios:</h5>
         <b-table v-if="prescriptionsExercise.length" striped over :items="prescriptionsExercise" :fields="fieldsExercise">
             <template v-slot:cell(actions)="row">
                 <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/prescription-exercises/${row.item.code}`">Detalhes</nuxt-link>
             </template>
         </b-table>
-        <h5 v-if="prescriptionsMedics.length">Prescrições Médicas</h5>
+        <h6 v-else>Não possui prescrições de exercicios</h6>
+        <br>
+        <h5>Prescrições Médicas:</h5>
         <b-table v-if="prescriptionsMedics.length" striped over :items="prescriptionsMedics" :fields="fieldsMedics">
             <template v-slot:cell(actions)="row">
                 <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/prescription-medics/${row.item.code}`">Detalhes</nuxt-link>
             </template>
         </b-table>
-        <h5 v-if="prescriptionsNutris.length">Prescrições de Nutrição</h5>
+        <h6 v-else>Não possui prescrições médicas</h6>
+        <br>
+        <h5>Prescrições de Nutrição:</h5>
         <b-table v-if="prescriptionsNutris.length" striped over :items="prescriptionsNutris" :fields="fieldsNutris">
             <template v-slot:cell(actions)="row">
                 <nuxt-link class="btn btn-link" :to="`/patients/prescriptions/prescription-nutris/${row.item.code}`">Detalhes</nuxt-link>
             </template>
         </b-table>
-        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+        <h6 v-else>Não possui prescrições de nutrição</h6>
+        <br>
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
       </b-container>
     </div>
  </template>

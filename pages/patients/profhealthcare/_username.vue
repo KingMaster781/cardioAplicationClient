@@ -3,12 +3,14 @@
       <patient-nav-bar/>
     <br><br>
         <b-container>
+            <h2>Detalhes do Profissional de Saúde {{ healthcare.username}}</h2>
+            <br>
             <h4>Detalhes do Profissional de Saúde:</h4>
               <p>Username: {{ healthcare.username}}</p>
               <p>Name: {{ healthcare.name}}</p>
               <p>Email: {{ healthcare.email}}</p>
               <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>
@@ -18,7 +20,7 @@
       data() {
         return {
           healthcare: {},
-          fieldhealthcare:['username','password','name','email','actions'],
+          fieldhealthcare:['username','name','email','actions'],
         }
     },
     computed: {

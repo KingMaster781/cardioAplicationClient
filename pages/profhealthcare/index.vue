@@ -6,11 +6,6 @@
 import ProfHealthNavBar from '../../components/ProfHealthNavBar.vue'
   export default {
     methods: {
-      signOut(){
-        
-        ProfHealthNavBarthis.$auth.logout()
-        this.$router.push('/')
-      }
     }
   }
 </script>

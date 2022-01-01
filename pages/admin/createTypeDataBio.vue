@@ -2,6 +2,8 @@
   <div>
     <admin-nav-bar/>
     <b-container>
+      <h2>Criar um Tipo de Dados</h2>
+      <br>
       <b-form @submit.prevent="onSubmit">
         <b-form-group label="Descrição">
           <b-input v-model="typeOfData.descType" name="descType" />
@@ -17,7 +19,7 @@
         </b-form-group>
         <b-button @click="criar" class="btn btn-primary btn-lg btn-block">Criar</b-button>
         <br>
-        <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+        <p align = "center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         <br />
       </b-form>
     </b-container>

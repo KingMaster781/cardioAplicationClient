@@ -1,8 +1,9 @@
 <template>
     <div>
       <prof-health-nav-bar/>
-      <br><br>
       <b-container>
+        <h2>Criar uma Prescrição de Nutrição</h2>
+        <br>
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="code"
@@ -48,9 +49,9 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">Criar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="create" :disabled="!isFormValid">Criar</button>
             <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
       </b-container>
     </div>

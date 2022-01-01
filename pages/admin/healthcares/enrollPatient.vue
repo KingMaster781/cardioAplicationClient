@@ -2,6 +2,8 @@
     <div>
         <admin-nav-bar/>
         <b-container>
+            <h2>Associar um Paciente um Profissional de Saude</h2>
+            <br>
             <form @submit.prevent="enroll" :disabled="!isFormValid">
                 <b-form-group
                 id="username"
@@ -29,9 +31,9 @@
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="enroll" :disabled="!isFormValid">Associar Paciente</button>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="enroll" :disabled="!isFormValid">Associar Paciente</button>
                 <br><br>
-                <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+                <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
             </form>
         </b-container>
     </div>

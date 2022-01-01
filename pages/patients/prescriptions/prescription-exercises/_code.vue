@@ -3,6 +3,8 @@
       <patient-nav-bar/>
       <br>
       <b-container>
+            <h2>Detalhes da Prescrição {{ prescription.code}}</h2>
+            <br>
             <h4>Detalhes da Prescrição:</h4>
                 <p>Codigo: {{ prescription.code}}</p>
                 <p>Duração: {{ prescription.duracao}} meses</p>
@@ -11,7 +13,8 @@
                 <p>Código do Programa: {{prescription.programCode}}</p>
             <h5>Exercicios associados ao Programa:</h5>
             <b-table v-if="exercises.length" striped over :items="exercises" :fields="fieldExercises" />
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <br>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>

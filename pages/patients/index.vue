@@ -7,10 +7,6 @@
 <script>
   export default {
     methods: {
-      signOut(){
-        this.$auth.logout()
-        this.$router.push('/')
-      }
     }
   }
 </script>

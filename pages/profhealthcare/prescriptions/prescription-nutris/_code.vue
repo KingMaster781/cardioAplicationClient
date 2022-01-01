@@ -3,6 +3,8 @@
       <prof-health-nav-bar/>
       <br>
       <b-container>
+            <h2>Consultar Detalhes da Prescrição {{prescription.code}}</h2>
+            <br>
             <h4>Detalhes da Prescrição:</h4>
                 <p>Codigo: {{ prescription.code}}</p>
                 <p>Duração: {{ prescription.duracao}} meses</p>
@@ -11,13 +13,13 @@
                 <p>Username do Paciente: {{ prescription.patientUser_username}}</p>
                 <p>Descrição de Nutrição a seguir: {{ prescription.descNutri}}</p>
             <p v-if="prescription.vigor=='Está em vigor'">
-            <b-button v-on:click="expirePrescription">Expirar Prescrição</b-button>
+            <b-button class="btn btn-secundary btn-lg btn-block" v-on:click="expirePrescription">Expirar Prescrição</b-button>
             </p>
             <p v-show="msg" class="text-danger">
                 {{ msg }}
             </p>
             <br>
-            <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>

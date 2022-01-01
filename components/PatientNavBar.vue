@@ -26,7 +26,7 @@
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ps><a>Profissionais de Saude</a></div>
         <b-collapse id="ps" accordion="my-accordion" role="tabpanel">
           <a href="/patients/profhealthcare/consultProfhealthcares">Consultar profissionais de saúde</a>
-          <a href="/patients/profhealthcare/sendEmailProfHealthcare">Consultar profissionais de saúde</a>
+          <a href="/patients/profhealthcare/sendEmailProfHealthcare">Enviar um email a um profissional de saúde</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.db><a>Dados Biomédicos</a></div>
         <b-collapse id="db" accordion="my-accordion" role="tabpanel">

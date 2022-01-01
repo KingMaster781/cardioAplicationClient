@@ -2,6 +2,8 @@
   <div>
    <admin-nav-bar/>
     <b-container>
+      <h2>Consultar todos os Pacientes</h2>
+      <br>
       <b-table striped over :items="patients" :fields="fields">
         <template v-slot:cell(actions)="row">
           <b-button variant="success" >
@@ -18,7 +20,8 @@
           </b-button>
         </template>
       </b-table>
-      <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
+      <br>
+      <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>

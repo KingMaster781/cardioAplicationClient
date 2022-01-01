@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:style="{ backgroundImage: 'url('+img+')' }">
+    <div>
         <b-navbar class="navbar" type="dark">
             <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
         </b-navbar>
