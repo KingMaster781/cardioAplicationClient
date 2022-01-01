@@ -1,6 +1,6 @@
 <template>
     <div>
-      <prof-health-nav-bar/>
+      <admin-nav-bar/>
         <br><br>
         <b-container>
             <form @submit.prevent="consult" :disabled="!isFormValid">
@@ -21,7 +21,7 @@
             <br>
             <b-table v-if="medicine.length" striped over :items="medicine" :fields="fields">
             <template v-slot:cell(actions)="row">
-                <nuxt-link class="btn btn-link" :to="`/profhealthcare/medicines/${row.item.code}`">Details</nuxt-link>
+                <nuxt-link class="btn btn-link" :to="`/admin/medicines/${row.item.code}`">Details</nuxt-link>
             </template>
             </b-table>
             <nuxt-link to="/profhealthcare">Back</nuxt-link>

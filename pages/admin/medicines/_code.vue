@@ -1,6 +1,6 @@
 <template>
     <div>
-      <prof-health-nav-bar/>
+      <admin-nav-bar/>
       <br>
       <b-container>
             <h4>Detalhes do Exercicio:</h4>

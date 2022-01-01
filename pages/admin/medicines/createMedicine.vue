@@ -1,6 +1,6 @@
 <template>
     <div>
-      <prof-health-nav-bar/>
+      <admin-nav-bar/>
       <br><br>
       <b-container>
         <form @submit.prevent="create" :disabled="!isFormValid">

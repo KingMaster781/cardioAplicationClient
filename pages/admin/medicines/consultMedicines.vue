@@ -1,6 +1,6 @@
 <template>
     <div>
-      <prof-health-nav-bar/>
+      <admin-nav-bar/>
       <br><br>
       <b-container>
         <b-table striped over :items="medicines" :fields="fields">

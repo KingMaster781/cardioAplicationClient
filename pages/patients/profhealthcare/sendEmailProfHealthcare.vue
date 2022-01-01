@@ -1,6 +1,6 @@
 <template>
   <div>
-    <admin-nav-bar/>
+    <patient-nav-bar/>
     <b-container>
         <h1>Enviar uma mensagem para um Profissional de Saúde</h1>
         <form @submit.prevent="send">

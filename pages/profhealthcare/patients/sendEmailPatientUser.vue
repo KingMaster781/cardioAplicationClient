@@ -1,6 +1,6 @@
 <template>
   <div>
-    <admin-nav-bar/>
+    <prof-health-nav-bar/>
     <b-container>
         <h1>Enviar uma mensagem para um Paciente</h1>
         <br>
