@@ -80,7 +80,7 @@ export default {
     create() {
     this.$axios
       .$post("/api/typeofdata/", {
-          code: this.code,
+        code: this.code,
         descType: this.descType,
         unidadeValorQuantitativo: this.unidadeValorQuantitativo,
         valorMaximo: this.valorMaximo,

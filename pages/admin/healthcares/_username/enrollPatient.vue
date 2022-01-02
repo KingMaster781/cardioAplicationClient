@@ -77,7 +77,7 @@ export default {
 
   methods: {
     enroll() {
-      this.$axios.$post('/api/profhealthcares/' + this.username + '/enroll-patient',{username: this.patientUsername})
+      this.$axios.$post('/api/profhealthcares/' + this.username + '/patients',{username: this.patientUsername})
         .then(() => {
           this.$router.push('/admin/healthcares/' + this.username)
         })

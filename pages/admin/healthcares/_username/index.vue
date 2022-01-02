@@ -24,7 +24,7 @@
       </template>
       </b-table>
       <h5 v-else>Não tem utentes associados</h5>
-      <nuxt-link to="/admin/healthcares">Back</nuxt-link>
+      <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>
