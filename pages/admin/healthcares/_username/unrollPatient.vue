@@ -2,26 +2,28 @@
     <div>
         <admin-nav-bar/>
         <b-container>
+            <h2>Dessassociar um Paciente um Profissional de Saude</h2>
+            <br>
             <form @submit.prevent="enroll" :disabled="!isFormValid">
                 <b-form-group
                 id="username"
-                description="The username is required"
+                description="O username é necessário"
                 label-for="username"
                 :invalid-feedback="invalidUsernameFeedback"
                 :state="isUsernameValid"
                 >
-                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Enter your username" />
+                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do profissional de saúde" />
                 </b-form-group>
                 <b-form-group
                 id="patient"
-                description="The patient is required"
+                description="O paciente é necessário"
                 label-for="patient"
                 :invalid-feedback="invalidPatientFeedback"
                 :state="isPatientValid"
                 >
                 <b-select v-model="patientUsername" :options="patients" :state="isPatientValid" required value-field="username" text-field="name">
                     <template v-slot:first>
-                    <option :value="null" disabled>-- Please select the Subject --
+                    <option :value="null" disabled>-- Selecione o paciente a Dessassociar --
                     </option>
                     </template>
                 </b-select>
@@ -29,9 +31,9 @@
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="unroll" :disabled="!isFormValid">Dessassociar Paciente</button>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="unroll" :disabled="!isFormValid">Dessassociar Paciente</button>
                 <br><br>
-                <nuxt-link to="/admin">Back</nuxt-link>
+                <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
             </form>
         </b-container>
     </div>
@@ -103,7 +105,7 @@ export default {
 
   methods: {
     unroll() {
-      this.$axios.$put('/api/profhealthcares/' + this.username + '/patients/',{username: this.patientUsername})
+      this.$axios.$put('/api/profhealthcares/' + this.username + '/unroll-patient/',{username: this.patientUsername})
         .then(() => {
           this.$router.push('/admin')
         })

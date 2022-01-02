@@ -6,6 +6,8 @@
         >Criar novo registo
         <fa :icon="['fas', 'plus']" />
       </b-button>
+      <h2>Consultar todos os Pacientes</h2>
+      <br>
       <b-table striped over :items="patients" :fields="fields">
         <template v-slot:cell(actions)="row">
           <b-button variant="info" :to="`/admin/patients/${row.item.username}`">
@@ -19,7 +21,8 @@
           </b-button>
         </template>
       </b-table>
-      <nuxt-link to="/admin">Back</nuxt-link>
+      <br>
+      <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>

@@ -2,10 +2,12 @@
     <div>
         <admin-nav-bar/>
         <b-container>
+            <h2>Associar um Paciente um Profissional de Saude</h2>
+            <br>
             <form @submit.prevent="enroll" :disabled="!isFormValid">
                 <b-form-group
                 id="patient"
-                description="The patient is required"
+                description="O paciente é necessário"
                 label-for="patient"
                 :invalid-feedback="invalidPatientFeedback"
                 :state="isPatientValid"
@@ -20,9 +22,9 @@
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="enroll" :disabled="!isFormValid">Associar Paciente</button>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="enroll" :disabled="!isFormValid">Associar Paciente</button>
                 <br><br>
-                <nuxt-link to="/admin/healthcares/">Back</nuxt-link>
+                <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
             </form>
         </b-container>
     </div>
@@ -75,7 +77,7 @@ export default {
 
   methods: {
     enroll() {
-      this.$axios.$post('/api/profhealthcares/' + this.username + '/patients',{username: this.patientUsername})
+      this.$axios.$post('/api/profhealthcares/' + this.username + '/enroll-patient',{username: this.patientUsername})
         .then(() => {
           this.$router.push('/admin/healthcares/' + this.username)
         })

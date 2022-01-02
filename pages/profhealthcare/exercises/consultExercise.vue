@@ -3,28 +3,31 @@
       <prof-health-nav-bar/>
         <br><br>
         <b-container>
+            <h2>Consultar um determinado Exercicio Físico</h2>
+            <br>
             <form @submit.prevent="consult" :disabled="!isFormValid">
                 <b-form-group
                     id="code"
-                    description="The code is required"
+                    description="O código é necessário"
                     label-for="code"
                     :invalid-feedback="invalidCodeFeedback"
                     :state="isCodeValid"
                 >
-                    <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter code's exercise" />
+                    <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do exercício" />
                 </b-form-group>
                 <p v-show="errorMsg" class="text-danger">
                     {{ errorMsg }}
                 </p>
-                <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
+                <button class="btn btn-primary btn-lg btn-block" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
             </form>
             <br>
-            <b-table striped over :items="exercises" :fields="fields">
+            <b-table v-if="exercises.length" striped over :items="exercises" :fields="fields">
             <template v-slot:cell(actions)="row">
-                <nuxt-link class="btn btn-link" :to="`/profhealthcare/exercises/${row.item.code}`">Details</nuxt-link>
+                <nuxt-link class="btn btn-link" :to="`/profhealthcare/exercises/${row.item.code}`">Detalhes</nuxt-link>
             </template>
             </b-table>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <br>
+            <p aling="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </b-container>
     </div>
  </template>
@@ -73,7 +76,7 @@
                     this.exercises = [exercise]
                 })
                 .catch((error) => {
-                    this.errorMsg = error
+                    this.errorMsg = error.response.data
                 })
         },
 

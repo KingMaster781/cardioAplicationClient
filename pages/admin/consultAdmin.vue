@@ -2,28 +2,31 @@
   <div>
     <admin-nav-bar/>
     <b-container>
+        <h2>Consultar um Determinado Admin</h2>
+        <br>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="username"
-                description="The username is required"
+                description="O username é necessário"
                 label-for="username"
                 :invalid-feedback="invalidUsernameFeedback"
                 :state="isUsernameValid"
             >
-                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Enter your username" />
+                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do admin" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
         </form>
         <br>
-        <b-table striped over :items="admin" :fields="fieldAdmins">
+        <b-table v-if="admin.length" striped over :items="admin" :fields="fieldAdmins">
           <template v-slot:cell(actions)="row">
-            <nuxt-link class="btn btn-link" :to="`/admin/${row.item.username}`">Details</nuxt-link>
+            <nuxt-link class="btn btn-link" :to="`/admin/${row.item.username}`">Detalhes</nuxt-link>
           </template>
         </b-table>
-        <nuxt-link to="/admin">Back</nuxt-link>
+        <br>
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>

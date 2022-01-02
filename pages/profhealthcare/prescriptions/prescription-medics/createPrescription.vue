@@ -1,30 +1,31 @@
 <template>
     <div>
       <prof-health-nav-bar/>
-      <br><br>
       <b-container>
+        <h2>Criar uma Prescrição Medica</h2>
+        <br>
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter a code to the prescription" />
+            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código da prescrição" />
             </b-form-group>
             <b-form-group
                 id="duracao"
-                description="The code is required"
+                description="A duração é necessária"
                 label-for="duracao"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Enter a duraction of the prescription" />
+            <b-input v-model.trim="duracao" :state="isDuracaoValid" required placeholder="Insira a duração da prescrição em dias" />
             </b-form-group>
             <b-form-group
                 id="patient"
-                description="The patient is required"
+                description="O paciente é necessário"
                 label-for="patient"
                 :invalid-feedback="invalidPatientFeedback"
                 :state="isPatientValid"
@@ -36,26 +37,25 @@
                     </template>
                 </b-select>
             </b-form-group>
-            <b-form-group
-                id="program"
-                description="The program is required"
-                label-for="program"
-                :invalid-feedback="invalidProgramFeedback"
-                :state="isProgramValid"
-            >
-                <b-select v-model="program" :options="programs" :state="isProgramValid" required value-field="code" text-field="name">
-                    <template v-slot:first>
-                    <option :value="null" disabled>-- Por favor, selecione o Programa RPC --
-                    </option>
-                    </template>
-                </b-select>
+            <h5>Selecionar Medicamentos:</h5>
+            <b-form-group>
+                <b-form-checkbox-group
+                    v-model="selectMedicine"
+                    :options="medicine"
+                    class="mb-3"
+                    value-field="code"
+                    text-field="name"
+                    disabled-field="notEnabled"
+                    stacked
+                ></b-form-checkbox-group>
             </b-form-group>
+            <br>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">CREATE</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="create" :disabled="!isFormValid">Criar</button>
             <br>
-            <nuxt-link to="/profhealthcare">Back</nuxt-link>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
       </b-container>
     </div>
@@ -71,6 +71,8 @@
             duracao: null,
             patients: [],
             programs: [],
+            medicine: [],
+            selectMedicine: [],
             errorMsg: false
         }
     },
@@ -156,7 +158,7 @@
             if (! this.isPatientValid) {
                 return false
             }
-            if (! this.isProgramValid) {
+            if (this.selectMedicine.length === 0){
                 return false
             }
             return true
@@ -168,10 +170,10 @@
         .then(healthcare =>  {
           this.patients = healthcare.patients || []
         })
-        this.$axios.$get('api/program/')
-        .then((program) => {
-            this.programs = program
-        })
+        this.$axios.$get('api/medicine/')
+            .then((medicine) => {
+            this.medicine = medicine
+            })
     },
 
     methods: {
@@ -181,15 +183,26 @@
       let day = dates.getUTCDate()
       let year = dates.getUTCFullYear()
       let currentDate = day + "/" + month + "/" + year
-      this.$axios.$post('/api/pescription', {
+      this.$axios.$post('/api/prescription-medics', {
           code: this.code,
           duracao: this.duracao,
           insertionDate: currentDate,
-          programCode: this.program,
           patientUser_username: this.patient
       })
       .then(() => {
-          this.$router.push('/profhealthcare')
+            this.selectMedicine.forEach(medicine=>{
+                this.$axios.$post('/api/prescription-medics/' + this.code + '/medicine/',{code: medicine})
+                .then(() => {
+                    console.log("success")
+                })
+                .catch((e)=>{
+                    this.errorMsg = e.response.data
+                })
+            })
+            if(this.errorMsg == null)
+            {
+                this.$router.push('/profhealthcare')
+            }
       })
       .catch((error) => {
           this.errorMsg = error.response.data

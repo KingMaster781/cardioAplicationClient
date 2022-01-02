@@ -3,6 +3,8 @@
       <patient-nav-bar/>
       <br><br>
       <b-container>
+          <h2>Consultar os meus Profissionais de Saúde</h2>
+          <br>
           <b-table v-if="profHealthcares.length" striped over :items="profHealthcares" :fields="fieldProfHealthcare">
             <template v-slot:cell(actions)="row">
                 <b-button variant="info" :to="`/patients/profhealthcare/${row.item.username}`">
@@ -10,7 +12,7 @@
           </b-button>
             </template>
           </b-table>
-          <nuxt-link to="/patients">Back</nuxt-link>
+          <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
       </b-container>
     </div>
  </template>

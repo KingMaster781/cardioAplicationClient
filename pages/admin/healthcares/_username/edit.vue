@@ -2,31 +2,51 @@
   <div>
     <admin-nav-bar/>
     <b-container>
+      <h2>Atualizar um Determinado Profissional de Saude</h2>
+      <br>
       <form @submit.prevent="update" :disabled="!isFormValid">
+            <b-form-group
+                id="username"
+                description="O username é necessário"
+                label-for="username"
+                :invalid-feedback="invalidUsernameFeedback"
+                :state="isUsernameValid"
+            >
+            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do profissional de saúde" />
+            </b-form-group>
+                <b-form-group
+                    id="password"
+                    description="A password é necessária"
+                    label-for="password"
+                    :invalid-feedback="invalidPasswordFeedback"
+                    :state="isPasswordValid"
+                >
+            <b-input v-model="password" :state="isPasswordValid" required placeholder="Insira a password do profissional de saúde" />
+            </b-form-group>
                 <b-form-group
                     id="name"
-                    description="The name is required"
+                    description="O nome é necessário"
                     label-for="name"
                     :invalid-feedback="invalidNameFeedback"
                     :state="isNameValid"
                 >
-                <b-input v-model.trim="name" :state="isNameValid" required placeholder="Enter your name" />
+                <b-input v-model.trim="name" :state="isNameValid" required placeholder="Insira o nome do profissional de saúde" />
             </b-form-group>
                 <b-form-group
                     id="email"
-                    description="The email is required"
+                    description="O email é necessário e com o prefixo @mycardio.pt"
                     label-for="email"
                     :invalid-feedback="invalidEmailFeedback"
                     :state="isEmailValid"
                 >
-                <b-input ref="email" v-model.trim="email" type="email" :state="isEmailValid" required pattern=".+@mycardio.pt" placeholder="Enter your e-mail" />
+                <b-input ref="email" v-model.trim="email" type="email" :state="isEmailValid" required pattern=".+@mycardio.pt" placeholder="Insira o email do profissional de saúde" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="update" :disabled="!isFormValid">Update</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="update" :disabled="!isFormValid">Atualizar</button>
             <br>
-            <nuxt-link to="/admin/healthcares">Back</nuxt-link>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
     </b-container>
   </div>

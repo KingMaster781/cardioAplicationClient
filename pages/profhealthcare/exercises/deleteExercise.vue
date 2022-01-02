@@ -3,20 +3,24 @@
       <prof-health-nav-bar/>
       <br><br>
       <b-container>
+        <h2>Eliminar um determinado Exercício Fisico</h2>
+        <br>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter code's exercise" />
+                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do exercício" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="remove" :disabled="!isFormValid">Remover</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="remove" :disabled="!isFormValid">Remover</button>
+            <br>
+            <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
       </b-container>
     </div>

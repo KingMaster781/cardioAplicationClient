@@ -3,28 +3,31 @@
       <prof-health-nav-bar/>
       <br><br>
        <b-container>
+        <h2>Consultar uma Determinada Prescrição</h2>
+        <br>
         <form @submit.prevent="consult" :disabled="!isFormValid">
             <b-form-group
                 id="code"
-                description="The code is required"
+                description="O código é necessário"
                 label-for="code"
                 :invalid-feedback="invalidCodeFeedback"
                 :state="isCodeValid"
             >
-                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Enter code's prescription" />
+                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código da prescrição" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="consult" :disabled="!isFormValid">Consultar</button>
         </form>
         <br>
-        <b-table striped over :items="prescriptions" :fields="fields">
+        <b-table v-if="prescriptions.length" striped over :items="prescriptions" :fields="fields">
           <template v-slot:cell(actions)="row">
-            <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${row.item.code}`">Details</nuxt-link>
+            <nuxt-link class="btn btn-link" :to="`/profhealthcare/prescriptions/${typePrescription}/${row.item.code}`">Detalhes</nuxt-link>
           </template>
         </b-table>
-        <nuxt-link to="/profhealthcare">Back</nuxt-link>
+        <br>
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
     </div>
  </template>
@@ -34,8 +37,9 @@
     data(){
         return {
             code: null,
-            fields: ['code', 'duracao', 'insertionDate', 'vigor', 'programCode', 'patientUser_username', 'actions'],
-            prescriptions: [],
+            fields: ['code', 'duracao', 'oldInsertionDate', 'vigor', 'patientUser_username', 'actions'],
+            prescriptions: {},
+            typePrescription: null,
             errorMsg: null
         }
     },
@@ -68,12 +72,29 @@
 
     methods: {
         consult(){
-            this.$axios.$get('/api/pescription/' + this.code)
+            this.errorMsg=null
+            this.typePrescription=null
+            this.$axios.$get('/api/prescription-exercises/' + this.code)
                 .then((prescription) => {
+                    this.typePrescription="prescription-exercises"
                     this.prescriptions = [prescription]
                 })
-                .catch((error) => {
-                    this.errorMsg = error
+                .catch(() => {
+                    this.$axios.$get('/api/prescription-medics/' + this.code)
+                    .then((prescription) => {
+                        this.typePrescription="prescription-medics"
+                        this.prescriptions = [prescription]
+                    })
+                    .catch(() => {
+                        this.$axios.$get('/api/prescription-nutris/' + this.code)
+                        .then((prescription) => {
+                            this.typePrescription="prescription-nutris"
+                            this.prescriptions = [prescription]
+                        })
+                        .catch((error) => {
+                            this.errorMsg = error.data
+                        })
+                    })
                 })
         },
     

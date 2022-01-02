@@ -6,11 +6,13 @@
 import ProfHealthNavBar from '../../components/ProfHealthNavBar.vue'
   export default {
     methods: {
-      signOut(){
-        
-        ProfHealthNavBarthis.$auth.logout()
-        this.$router.push('/')
-      }
+    },
+    created(){
+      this.$axios.$put('/api/prescriptions/update', {
+          
+      })
+      .then(console.log('success'))
+      .catch(console.log('failed'))
     }
   }
 </script>

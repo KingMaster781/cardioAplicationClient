@@ -1,172 +1,103 @@
 <template>
-<div>
- <b-navbar type="dark" variant="primary">
-      <b-button variant="primary" v-b-toggle.sidebar-no-header>
-        <span class="navbar-toggler-icon"></span>
-      </b-button>
-      <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
+<div id="allTheNav">
+    <b-navbar id="navigator" type="dark" :class="{ navbaropen: opened }">
+      <span class="open-slide">
+        <a href="#" @click="opened = !opened">
+          <div>
+            <div class="bar" :class="{ topopen: opened }"></div>
+            <div class="bar" :class="{ midopen: opened }"></div>
+            <div class="bar" :class="{ botopen: opened }"></div>
+          </div>
+        </a>
+      </span>
+      <b-navbar-brand tag="h1" class="mb-0" @click="initialPage">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
+        <b-nav-item>Bem Vindo {{username}}</b-nav-item>
         <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
       </b-navbar-nav>
     </b-navbar>
-    <b-sidebar
-      id="sidebar-no-header"
-      aria-labelledby="sidebar-no-header-title"
-      no-header
-      shadow
-      backdrop
-      backdrop-variant="dark"
-    >
-      <template #default>
-        <div class="p-3">
-          <nav class="mb-3">
-            <b-nav vertical>
-              <b-dropdown-item block v-b-toggle.pa variant="info"
-                >Pacientes</b-dropdown-item
-              >
-              <b-collapse
-                id="pa"
-                visible
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-dropdown-item
-                    href="/admin/patients/consultPatients"
-                    class="link-dark rounded"
-                    >Lista de Pacientes</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/patients/consultPatient"
-                    class="link-dark rounded"
-                    >Consultar um determinado Paciente</b-dropdown-item
-                  >
-                </b-card-body>
-              </b-collapse>
-              <b-dropdown-item block v-b-toggle.he variant="info"
-                >Profissionais de Saude</b-dropdown-item
-              >
-              <b-collapse
-                id="he"
-                visible
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-dropdown-item
-                    href="/admin/healthcares/consultHealthcares"
-                    class="link-dark rounded"
-                    >Lista de Profissionais de Saude</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/healthcares/consultHealthcare"
-                    class="link-dark rounded"
-                    >Consultar um determinado Profissional de
-                    Saude</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/healthcares/createHealthcare"
-                    class="link-dark rounded"
-                    >Criar um Profissional de Saude</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/healthcares/removeHealthcare"
-                    class="link-dark rounded"
-                    >Remover um determinado Profissional de
-                    Saude</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/healthcares/updateHealthcare"
-                    class="link-dark rounded"
-                    >Atualiza um determinado Profissional de
-                    Saude</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/healthcares/enrollPatient"
-                    class="link-dark rounded"
-                    >Associar utente a Profissional de Saude</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/healthcares/unrollPatient"
-                    class="link-dark rounded"
-                    >Dessassociar utente de Profissional de
-                    Saude</b-dropdown-item
-                  >
-                </b-card-body>
-              </b-collapse>
-              <b-dropdown-item block v-b-toggle.ad variant="info"
-                >Administradores</b-dropdown-item
-              >
-              <b-collapse
-                id="ad"
-                visible
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-dropdown-item
-                    href="/admin/consultAdmins"
-                    class="link-dark rounded"
-                    >Lista de Admins</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/consultAdmin"
-                    class="link-dark rounded"
-                    >Consultar um determinado Admin</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/createAdmin"
-                    class="link-dark rounded"
-                    >Criar um Admin</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/removeAdmin"
-                    class="link-dark rounded"
-                    >Remover um determinado Admin</b-dropdown-item
-                  >
-                  <b-dropdown-item
-                    href="/admin/updateAdmin"
-                    class="link-dark rounded"
-                    >Atualiza um determinado Admin</b-dropdown-item
-                  >
-                </b-card-body>
-              </b-collapse>
-              <b-dropdown-item block v-b-toggle.ty variant="info"
-                >Tipo de Dados</b-dropdown-item
-              >
-              <b-collapse
-                id="ty"
-                visible
-                accordion="my-accordion"
-                role="tabpanel"
-              >
-                <b-card-body>
-                  <b-dropdown-item
-                    href="/admin/createTypeDataBio"
-                    class="link-dark rounded"
-                    >Criar um Tipo de Dados</b-dropdown-item
-                  >
-                </b-card-body>
-              </b-collapse>
-            </b-nav>
-          </nav>
-        </div>
-      </template>
-      <template #footer>
-        <div class="d-flex bg-dark text-light align-items-center px-3 py-2">
-          <strong class="mr-auto"></strong>
-          <b-button size="sm" v-b-toggle.sidebar-no-header>Close</b-button>
-        </div>
-      </template>
-    </b-sidebar>
-    <br /><br />
+    <div id="side-menu" class="side-nav" :class="{ sidenavopen: opened }">
+      <div class="list-group">
+        <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.pa><a>Pacientes</a></div>
+        <b-collapse id="pa" accordion="my-accordion" role="tabpanel">
+          <a href="/admin/patients/consultPatients">Lista de Pacientes</a>
+          <a href="/admin/patients/consultPatient">Consultar um determinado Paciente</a>
+          <a href="/admin/patients/sendEmailPatientUser">Enviar uma mensagem a um paciente</a>
+        </b-collapse>
+        <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ps><a>Profissionais de Saude</a></div>
+        <b-collapse id="ps" accordion="my-accordion" role="tabpanel">
+          <a href="/admin/healthcares/consultHealthcares">Lista de Profissionais de Saude</a>
+          <a href="/admin/healthcares/consultHealthcare">Consultar um determinado Profissional de Saude</a>
+          <a href="/admin/healthcares/createHealthcare">Criar um Profissional de Saude</a>
+          <a href="/admin/healthcares/removeHealthcare">Remover um determinado Profissional de Saude</a>
+          <a href="/admin/healthcares/updateHealthcare">Atualiza um determinado Profissional de Saude</a>
+          <a href="/admin/healthcares/enrollPatient">Associar utente a Profissional de Saude</a>
+          <a href="/admin/healthcares/unrollPatient">Dessassociar utente de Profissional de Saude</a>
+          <a href="/admin/healthcares/sendEmailProfHealthcare">Enviar uma mensagem a um profissional de saude</a>
+        </b-collapse>
+        <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ad><a>Administradores</a></div>
+        <b-collapse id="ad" accordion="my-accordion" role="tabpanel">
+          <a href="/admin/consultAdmins">Lista de Admins</a>
+          <a href="/admin/consultAdmin">Consultar um determinado Admin</a>
+          <a href="/admin/createAdmin">Criar um Admin</a>
+          <a href="/admin/removeAdmin">Remover um determinado Admin</a>
+          <a href="/admin/updateAdmin">Atualiza um determinado Admin</a>
+        </b-collapse>
+        <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.tdd><a>Tipos de dados</a></div>
+        <b-collapse id="tdd" accordion="my-accordion" role="tabpanel">
+          <a href="/admin/createTypeDataBio">Criar um Tipo de Dados</a>
+        </b-collapse>
+        <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.me><a>Medicamentos</a></div>
+        <b-collapse id="me" accordion="my-accordion" role="tabpanel">
+          <a href="/admin/medicines/consultMedicines">Lista de Medicamentos</a>
+          <a href="/admin/medicines/consultMedicine">Consultar um determinado Medicamento</a>
+          <a href="/admin/medicines/createMedicine">Criar um Medicamento</a>
+          <a href="/admin/medicines/removeMedicine">Remover um Medicamento</a>
+          <a href="/admin/medicines/updateMedicine">Atualiza um determinado Medicamento</a>
+        </b-collapse>
+      </div>
+    </div>
+    <br><br>
 </div>
 </template>
 
 <script>
 export default {
     name: 'navBarAdmin',
+    data(){
+      return {
+        opened: false
+      }
+    },
+    computed: {
+      username(){
+        return this.$auth.user.sub
+      },
+      textDrop(){
+        return "Bem Vindo" + this.username
+      }
+    },
+    created(){
+      if(!this.$auth.user)
+      {
+        this.$router.push('/')
+      }
+      if(!this.$auth.user.groups.includes('Admin'))
+      {
+        if(this.$auth.user.groups.includes('ProfHealthcare'))
+        {
+          this.$router.push('/profhealthcare')
+        }
+        if(this.$auth.user.groups.includes('PatientUser'))
+        {
+          this.$router.push('/patients')
+        }
+      }
+    },
     methods: {
+      initialPage(){
+        this.$router.push('/admin')
+      },
       signOut(){
         this.$auth.logout()
         this.$router.push('/')
@@ -174,3 +105,126 @@ export default {
     }
 }
 </script>
+<style scoped>
+.navbar{
+  background-color: #3b5998;
+  overflow: hidden;
+  height: 80px;
+}
+
+.navbaropen{
+  background-color: #3b5998;
+  overflow: hidden;
+  height: 80px;
+  margin-left: 15%;
+}
+
+.navbar a{
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar ul{
+  margin: 8px 0 0 0;
+  list-style: none;
+}
+
+.navbar a:hover{
+  background-color: #ddd;
+  color: #000;
+}
+
+.side-nav{
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: 0.9;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.3s;
+}
+
+.sidenavopen{
+  height: 100%;
+  width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  opacity: 0.9;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.3s;
+}
+
+.side-nav a{
+  padding: 10px 10px 10px 30px;
+  text-decoration: none;
+  font-size: 22px;
+  color: #ccc;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-nav a:hover{
+  color: #fff;
+}
+
+.side-nav .btn-close{
+  position: absolute;
+  top: 0;
+  right: 22px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main{
+  transition: margin-left 0.3s;
+  padding: 20px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.mainopen{
+  transition: margin-left 0.3s;
+  padding: 20px;
+  overflow: hidden;
+  width: 100%;
+  margin-left: 250px;
+}
+
+nav{
+  transition: margin-left 0.3s;
+}
+
+.bar{
+  display: block;
+  height: 5px;
+  width: 35px;
+  background: #000;
+  margin: 5px auto;
+}
+
+.midopen{
+  width: 0;
+}
+.bar{
+  transition: all .3s ease;
+}
+.topopen{
+  transform: translateY(10px) rotateZ(45deg);
+}
+.botopen{
+  transform: translateY(-10px) rotateZ(-45deg);
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
-    <div v-bind:style="{ backgroundImage: 'url('+img+')' }">
-        <b-navbar type="dark" variant="primary">
+    <div>
+        <b-navbar class="navbar" type="dark">
             <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
         </b-navbar>
         <br>
@@ -39,7 +39,6 @@ export default{
     auth: false,
     data(){
         return{
-            img : "@/img/background_1.jpg",
             username: null,
             password: null
         }
@@ -74,4 +73,9 @@ export default{
   },
 }
 </script>
->
+<style scoped>
+    .navbar{
+        background-color: #3b5998;
+        height: 80px;
+    }
+</style>

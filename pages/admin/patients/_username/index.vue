@@ -2,7 +2,8 @@
   <div>
     <admin-nav-bar />
     <b-container>
-      <h4>Dados Biométricos do Paciente:</h4>
+      <h4>Dados Biométricos do Paciente: {{ patient.username}}</h4>
+      <br>
       <p>Username: {{ patient.username }}</p>
       <p>Name: {{ patient.name }}</p>
       <p>Email: {{ patient.email }}</p>
