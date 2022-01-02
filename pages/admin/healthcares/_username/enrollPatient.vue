@@ -4,15 +4,6 @@
         <b-container>
             <form @submit.prevent="enroll" :disabled="!isFormValid">
                 <b-form-group
-                id="username"
-                description="The username is required"
-                label-for="username"
-                :invalid-feedback="invalidUsernameFeedback"
-                :state="isUsernameValid"
-                >
-                <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Enter your username" />
-                </b-form-group>
-                <b-form-group
                 id="patient"
                 description="The patient is required"
                 label-for="patient"
@@ -21,7 +12,7 @@
                 >
                 <b-select v-model="patientUsername" :options="patients" :state="isPatientValid" required value-field="username" text-field="name">
                     <template v-slot:first>
-                    <option :value="null" disabled>-- Por favor, selecione o paciente --
+                    <option :value="null" disabled>Por favor, selecione o paciente
                     </option>
                     </template>
                 </b-select>
@@ -31,7 +22,7 @@
                 </p>
                 <button class="btn btn-primary" @click.prevent="enroll" :disabled="!isFormValid">Associar Paciente</button>
                 <br><br>
-                <nuxt-link to="/admin">Back</nuxt-link>
+                <nuxt-link to="/admin/healthcares/">Back</nuxt-link>
             </form>
         </b-container>
     </div>
@@ -51,26 +42,10 @@ export default {
       .then(patient => {
         this.patients = patient
       })
+      this.username = this.$route.params.username;
   },
 
   computed: {
-    invalidUsernameFeedback () {
-      if (!this.username) {
-        return null
-      }
-      let usernameLen = this.username.length
-      if (usernameLen < 3 || usernameLen > 30) {
-        return 'The username must be between [3, 30] characters.'
-      }
-      return ''
-    },
-
-    isUsernameValid () {
-      if (!this.invalidUsernameFeedback === null) {
-        return null
-      }
-      return this.invalidUsernameFeedback === ''
-    },
 
     invalidPatientFeedback () {
       if (!this.patientUsername) {
@@ -91,9 +66,6 @@ export default {
     },
 
     isFormValid () {
-      if (! this.isUsernameValid) {
-        return false
-      }
       if (! this.isPatientValid) {
         return false
       }
@@ -105,7 +77,7 @@ export default {
     enroll() {
       this.$axios.$post('/api/profhealthcares/' + this.username + '/patients',{username: this.patientUsername})
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/admin/healthcares/' + this.username)
         })
         .catch((e)=>{
           this.errorMsg = e.response.data

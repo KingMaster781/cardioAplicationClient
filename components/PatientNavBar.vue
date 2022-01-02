@@ -4,7 +4,7 @@
       <b-button variant="primary" v-b-toggle.sidebar-no-header>
         <span class="navbar-toggler-icon"></span>
       </b-button>
-      <b-navbar-brand tag="h1" class="mb-0">CardioApp</b-navbar-brand>
+      <b-navbar-brand tag="h1" class="mb-0" href="/patients">CardioApp</b-navbar-brand>
       <b-navbar-nav class="ml-auto">
         <b-nav-item @click.prevent="signOut">Logout</b-nav-item>
       </b-navbar-nav>
@@ -28,19 +28,19 @@
                 role="tabpanel">
                   <b-card-body>
                     <b-dropdown-item 
-                        href="/patients/prescriptions/consultPrescription" 
+                        href="/patients/patientData" 
                         class="link-dark rounded">
-                            Consultar uma determinada prescrição
+                            Dados
                     </b-dropdown-item>
                     <b-dropdown-item 
-                        href="/patients/prescriptions/consultPrescriptions" 
+                        href="/patients/prescriptions" 
                         class="link-dark rounded">
-                            Consultar todas prescrições
+                            Prescrições
                     </b-dropdown-item>
                     <b-dropdown-item 
-                        href="/patients/profhealthcare/consultProfhealthcares"
+                        href="/patients/profhealthcare"
                         class="link-dark rounded">
-                            Consultar profissionais de saúde
+                            Profissionais de saúde
                     </b-dropdown-item>  
                   </b-card-body>
                 </b-collapse>

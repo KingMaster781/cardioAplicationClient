@@ -2,18 +2,19 @@
   <div>
    <admin-nav-bar/>
     <b-container>
+      <b-button variant="success" style="float: right" :to="`/admin/patients/create`"
+        >Criar novo registo
+        <fa :icon="['fas', 'plus']" />
+      </b-button>
       <b-table striped over :items="patients" :fields="fields">
         <template v-slot:cell(actions)="row">
-          <b-button variant="success" >
-            <fa :icon="['fas', 'plus']" />
-          </b-button>
           <b-button variant="info" :to="`/admin/patients/${row.item.username}`">
             <fa :icon="['fas', 'info-circle']" />
           </b-button>
           <b-button variant="primary" :to="`/admin/patients/${row.item.username}/edit`">
             <fa :icon="['fas', 'pen']" />
           </b-button>
-          <b-button variant="danger">
+          <b-button variant="danger" @click="remove(row.item.username)">
             <fa :icon="['fas', 'trash']" />
           </b-button>
         </template>
@@ -41,6 +42,13 @@ export default {
       this.$auth.logout();
       this.$router.push("/");
     },
+    remove(patientUsername) {
+      this.$axios.$delete("api/patientusers/" + patientUsername).then(
+        this.$axios.$get("api/patientusers/").then((patient) => {
+        this.patients = patient;
+      })
+      );
+    }
   },
 };
 </script>

@@ -7,7 +7,7 @@
               <p>Username: {{ healthcare.username}}</p>
               <p>Name: {{ healthcare.name}}</p>
               <p>Email: {{ healthcare.email}}</p>
-            <nuxt-link to="/patients">Back</nuxt-link>
+            <nuxt-link to="/patients/profhealthcare">Back</nuxt-link>
         </b-container>
     </div>
  </template>

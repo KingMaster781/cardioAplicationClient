@@ -44,7 +44,7 @@
             </p>
             <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">CREATE</button>
             <br>
-            <nuxt-link to="/admin">Back</nuxt-link>
+            <nuxt-link to="/admin/healthcares">Back</nuxt-link>
         </form>
     </b-container>
   </div>
@@ -158,7 +158,7 @@ export default {
         email: this.email,
       })
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/admin/healthcares')
         })
         .catch((error) => {
           this.errorMsg = error.response.data

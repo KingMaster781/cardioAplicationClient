@@ -2,25 +2,7 @@
   <div>
     <admin-nav-bar/>
     <b-container>
-      <form @submit.prevent="create" :disabled="!isFormValid">
-            <b-form-group
-                id="username"
-                description="The username is required"
-                label-for="username"
-                :invalid-feedback="invalidUsernameFeedback"
-                :state="isUsernameValid"
-            >
-            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Enter your username" />
-            </b-form-group>
-                <b-form-group
-                    id="password"
-                    description="The password is required"
-                    label-for="password"
-                    :invalid-feedback="invalidPasswordFeedback"
-                    :state="isPasswordValid"
-                >
-            <b-input v-model="password" :state="isPasswordValid" required placeholder="Enter your password" />
-            </b-form-group>
+      <form @submit.prevent="update" :disabled="!isFormValid">
                 <b-form-group
                     id="name"
                     description="The name is required"
@@ -42,9 +24,9 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary" @click.prevent="create" :disabled="!isFormValid">CREATE</button>
+            <button class="btn btn-primary" @click.prevent="update" :disabled="!isFormValid">Update</button>
             <br>
-            <nuxt-link to="/admin">Back</nuxt-link>
+            <nuxt-link to="/admin/healthcares">Back</nuxt-link>
         </form>
     </b-container>
   </div>
@@ -54,15 +36,14 @@
 export default {
   data(){
     return {
-      username: null,
-      password: null,
       name: null,
       email: null,
+      password: null,
       errorMsg: false
     }
   },
   computed: {
-      invalidUsernameFeedback () {
+      /*invalidUsernameFeedback () {
       if (!this.username) {
         return null
       }
@@ -96,7 +77,7 @@ export default {
         return null
       }
       return this.invalidUsernameFeedback === ''
-    },
+    },*/
 
     invalidNameFeedback () {
       if (!this.name) {
@@ -120,10 +101,10 @@ export default {
       if (!this.email) {
         return null
       }
-      if(!this.$refs.email.checkValidity())
+      /*if(!this.$refs.email.checkValidity())
       {
         return null
-      }
+      }*/
       return ''
     },
 
@@ -134,12 +115,6 @@ export default {
       return this.invalidEmailFeedback === ''
     },
      isFormValid () {
-      if (! this.isUsernameValid) {
-        return false
-      }
-      if (! this.isPasswordValid) {
-        return false
-      }
       if (! this.isNameValid) {
         return false
       }
@@ -149,26 +124,32 @@ export default {
       return true
     }
   },
+  created() {
+        this.$axios.$get(`/api/profhealthcares/${this.$route.params.username}`)
+        .then(healthcare => {
+            this.name = healthcare.name,
+            this.email = healthcare.email,
+            this.password = healthcare.password
+        })
+    },
   methods: {
-    create() {
-      this.$axios.$post('/api/admin', {
-        username: this.username,
-        password: this.password,
+    update() {
+      this.$axios.$put('/api/profhealthcares/' + this.$route.params.username, {
+        username: this.$route.params.username,
         name: this.name,
         email: this.email,
+        password: this.password
       })
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/admin/healthcares')
         })
         .catch((error) => {
           this.errorMsg = error.response.data
         })
     },
-    methods: {
-      signOut(){
+    signOut(){
         this.$auth.logout()
         this.$router.push('/')
-      }
     }
   }
 }

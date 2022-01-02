@@ -23,7 +23,7 @@
             <nuxt-link class="btn btn-link" :to="`/admin/patients/${row.item.username}`">Details</nuxt-link>
           </template>
         </b-table>
-        <nuxt-link to="/admin">Back</nuxt-link>
+        <nuxt-link to="/admin/patients">Back</nuxt-link>
     </b-container>
   </div>
 </template>
