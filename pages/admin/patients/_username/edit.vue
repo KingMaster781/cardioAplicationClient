@@ -2,17 +2,17 @@
   <div>
     <admin-nav-bar/>
     <b-container>
-      <h2>Atualizar um Determinado Profissional de Saude</h2>
+      <h2>Atualizar um Determinado Paciente</h2>
       <br>
       <form @submit.prevent="update" :disabled="!isFormValid">
-            <!--<b-form-group
+            <b-form-group
                 id="username"
                 description="O username é necessário"
                 label-for="username"
                 :invalid-feedback="invalidUsernameFeedback"
                 :state="isUsernameValid"
             >
-            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do profissional de saúde" />
+            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do paciente" />
             </b-form-group>
                 <b-form-group
                     id="password"
@@ -21,8 +21,8 @@
                     :invalid-feedback="invalidPasswordFeedback"
                     :state="isPasswordValid"
                 >
-            <b-input v-model="password" :state="isPasswordValid" required placeholder="Insira a password do profissional de saúde" />
-            </b-form-group>-->
+            <b-input v-model="password" :state="isPasswordValid" required placeholder="Insira a password do paciente" />
+            </b-form-group>
                 <b-form-group
                     id="name"
                     description="O nome é necessário"
@@ -30,16 +30,15 @@
                     :invalid-feedback="invalidNameFeedback"
                     :state="isNameValid"
                 >
-                <b-input v-model.trim="name" :state="isNameValid" required placeholder="Insira o nome do profissional de saúde" />
+                <b-input v-model.trim="name" :state="isNameValid" required placeholder="Insira o nome do paciente" />
             </b-form-group>
                 <b-form-group
                     id="email"
-                    description="O email é necessário e com o prefixo @mycardio.pt"
                     label-for="email"
                     :invalid-feedback="invalidEmailFeedback"
                     :state="isEmailValid"
                 >
-                <b-input ref="email" v-model.trim="email" type="email" :state="isEmailValid" required pattern=".+@mycardio.pt" placeholder="Insira o email do profissional de saúde" />
+                <b-input ref="email" v-model.trim="email" type="email" :state="isEmailValid" placeholder="Insira o email do profissional de saúde" />
             </b-form-group>
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}

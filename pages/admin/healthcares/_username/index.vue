@@ -2,7 +2,8 @@
   <div>
     <admin-nav-bar />
     <b-container>
-      <h4>Detalhes do Profissional de Saúde:</h4>
+      <h2>Consultar um Determindo Profissional de Saúde</h2>
+      <br>
       <p>Username: {{ healthcare.username }}</p>
       <p>Name: {{ healthcare.name }}</p>
       <p>Email: {{ healthcare.email }}</p>
@@ -58,7 +59,7 @@ export default {
     },
     unroll(patientUsername) {
       this.$axios
-        .$put("/api/profhealthcares/" + this.username + "/patients/", {
+        .$put("/api/profhealthcares/" + this.username + "/unroll-patient/", {
           username: patientUsername,
         })
         .then(() => {
