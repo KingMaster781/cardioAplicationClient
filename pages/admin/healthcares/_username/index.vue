@@ -63,11 +63,13 @@ export default {
           username: patientUsername,
         })
         .then(() => {
+          this.$toast.success('Dessassociação de paciente realizada com sucesso').goAway(3000)
           this.$axios
             .$get(`/api/profhealthcares/${this.username}`)
             .then((healthcare) => (this.healthcare = healthcare || {}));
         })
         .catch((e) => {
+          this.$toast.error('Erro ao dessassociar paciente').goAway(3000)
           this.errorMsg = e.response.data;
         });
     },

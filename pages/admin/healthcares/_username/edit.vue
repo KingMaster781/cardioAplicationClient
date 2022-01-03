@@ -161,9 +161,11 @@ export default {
         password: this.password
       })
         .then(() => {
+          this.$toast.success('Atualização nos profissionais de saude feita com sucesso').goAway(3000)
           this.$router.push('/admin/healthcares')
         })
         .catch((error) => {
+          this.$toast.error('Falha a fazer atualização nos profissionais de saude').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

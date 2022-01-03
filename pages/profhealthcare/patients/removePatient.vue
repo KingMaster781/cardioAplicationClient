@@ -64,9 +64,11 @@ export default {
     deleted() {
       this.$axios.$delete('/api/patientusers/' + this.username)
         .then(() => {
+          this.$toast.success('Paciente removido com sucesso').goAway(3000)
           this.$router.push('/profhealthcare')
         })
         .catch((error) => {
+          this.$toast.error('Error ao remover paciente').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

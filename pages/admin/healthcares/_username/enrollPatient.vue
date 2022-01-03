@@ -79,9 +79,11 @@ export default {
     enroll() {
       this.$axios.$post('/api/profhealthcares/' + this.username + '/enroll-patient',{username: this.patientUsername})
         .then(() => {
+          this.$toast.success('Paciente associado com sucesso').goAway(3000)
           this.$router.push('/admin/healthcares/' + this.username)
         })
         .catch((e)=>{
+          this.$toast.error('Erro ao associar paciente').goAway(3000)
           this.errorMsg = e.response.data
         })
     },

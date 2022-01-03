@@ -78,6 +78,7 @@ export default {
             this.patient = [patient]
         })
         .catch((error) => {
+          this.$toast.error('Erro a consultar paciente').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

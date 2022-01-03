@@ -76,9 +76,11 @@ export default {
         type: this.type,
       })
       .then(() => {
-        this.$router.push('/admin/patients')
+        this.$toast.success('Dado atualizado com sucesso').goAway(3000)
+        this.$router.push('/profhealthcare/patients')
       })
       .catch((error) => {
+        this.$toast.error('Erro a atualizar dado').goAway(3000)
         this.errorMsg = error.response.data;
       });
   },

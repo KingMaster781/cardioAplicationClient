@@ -76,6 +76,7 @@
                     this.exercises = [exercise]
                 })
                 .catch((error) => {
+                    this.$toast.error('Erro a consultar exercicio').goAway(3000)
                     this.errorMsg = error.response.data
                 })
         },

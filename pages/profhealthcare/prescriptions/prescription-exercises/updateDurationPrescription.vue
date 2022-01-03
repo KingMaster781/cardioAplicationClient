@@ -102,6 +102,7 @@
                 }
                 else
                 {
+                    this.$toast.error('Esta prescrição já não se encontra em vigor').goAway(3000)
                     this.errorMsg = "Esta prescrição já não se encontra em vigor"
                 }
             })
@@ -114,9 +115,11 @@
                 duracao: this.duracao,
             })
             .then(() => {
+                this.$toast.success('Duração da prescrição atualizda com sucesso').goAway(3000)
                 this.$router.push('/profhealthcare')
             })
             .catch((error) => {
+                this.$toast.error('Erro ao atualizar duração da prescrição').goAway(3000)
                 this.errorMsg = error.response.data
             })
         },

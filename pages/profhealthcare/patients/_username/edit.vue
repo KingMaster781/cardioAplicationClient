@@ -160,9 +160,11 @@ export default {
         password: this.password
       })
         .then(() => {
-          this.$router.push('/admin/healthcares')
+          this.$toast.success('Exame atualizado com sucesso').goAway(3000)
+          this.$router.push('/profhealthcare')
         })
         .catch((error) => {
+          this.$toast.error('Erro a atualizar exame').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

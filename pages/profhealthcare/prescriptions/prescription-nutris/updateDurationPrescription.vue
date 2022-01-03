@@ -113,9 +113,11 @@
                 duracao: this.duracao,
             })
             .then(() => {
+                this.$toast.success('Duração atualizada com sucesso').goAway(3000)
                 this.$router.push('/profhealthcare')
             })
             .catch((error) => {
+                this.$toast.error('Erro ao atualizar duração').goAway(3000)
                 this.errorMsg = error.response.data
             })
         },

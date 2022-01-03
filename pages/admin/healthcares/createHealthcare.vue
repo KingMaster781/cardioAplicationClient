@@ -160,9 +160,11 @@ export default {
         email: this.email,
       })
         .then(() => {
+          this.$toast.success('Profissional de Saude criado com sucesso').goAway(3000)
           this.$router.push('/admin')
         })
         .catch((error) => {
+          this.$toast.error('Erro ao criar profissional de saude').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

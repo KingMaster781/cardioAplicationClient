@@ -76,6 +76,7 @@
                     this.medicine = [medicine]
                 })
                 .catch((error) => {
+                    this.$toast.error('Erro a consultar medicamento').goAway(3000)
                     this.errorMsg = error.response.data
                 })
         },

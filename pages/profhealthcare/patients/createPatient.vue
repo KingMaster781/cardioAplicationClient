@@ -166,6 +166,7 @@ export default {
           this.enroll()
         })
         .catch((error) => {
+          this.$toast.error('Erro ao criar paciente').goAway(3000)
           this.errorMsg = error.response.data
         })
     },
@@ -176,9 +177,11 @@ export default {
     enroll() {
       this.$axios.$post('/api/profhealthcares/' + this.docUsername + '/patients/',{username: this.username})
         .then(() => {
+          this.$toast.success('Paciente criado com sucesso').goAway(3000)
           this.$router.push('/profhealthcare')
         })
         .catch((e)=>{
+          this.$toast.error('Erro ao criar paciente').goAway(3000)
           this.errorMsg = e.response.data
         })
     },

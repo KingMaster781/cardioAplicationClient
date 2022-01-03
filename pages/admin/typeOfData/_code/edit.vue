@@ -95,9 +95,11 @@ export default {
         valorMinimo: this.valorMinimo,
       })
       .then(() => {
+        this.$toast.success('Tipo de dado atualizado com sucesso').goAway(3000)
         this.$router.push('/admin/typeOfData')
       })
       .catch((error) => {
+        this.$toast.error('Erro a atualizar tipo de dado').goAway(3000)
         this.errorMsg = error.response.data;
       });
   },

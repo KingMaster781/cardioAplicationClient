@@ -156,9 +156,11 @@ export default {
         email: this.email,
       })
         .then(() => {
+          this.$toast.success('Paciente atualizado com sucesso').goAway(3000)
           this.$router.push('/admin')
         })
         .catch((error) => {
+          this.$toast.error('Erro a atualizar paciente').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

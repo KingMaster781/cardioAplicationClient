@@ -167,10 +167,12 @@
                 })
                 if(this.errorMsg == null)
                 {
+                    this.$toast.success('Programa criado com sucesso').goAway(3000)
                     this.$router.push('/profhealthcare')
                 }
             })
             .catch((error) => {
+                this.$toast.error('Erro ao criar programa').goAway(3000)
                 this.errorMsg = error.response.data
             })
             

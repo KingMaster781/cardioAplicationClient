@@ -63,9 +63,11 @@ export default {
     consult() {
       this.$axios.$delete('/api/admin/' + this.username)
         .then((admin) => {
+          this.$toast.success('Admin removido com sucesso').goAway(3000)
           this.$router.push('/admin')
         })
         .catch((error) => {
+          this.$toast.error('Erro a remover admin').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

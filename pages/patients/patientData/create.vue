@@ -85,9 +85,11 @@ export default {
         type: this.type,
       })
       .then(() => {
-        this.$router.push('/admin/patients')
+        this.$toast.success('Dado inserido com sucesso').goAway(3000)
+        this.$router.push('/patients')
       })
       .catch((error) => {
+        this.$toast.error('Erro a inserir dado').goAway(3000)
         this.errorMsg = error.response.data;
       });
   },

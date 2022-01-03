@@ -181,9 +181,11 @@
           patientUser_username: this.patient
       })
       .then(() => {
+          this.$toast.success('Prescrição criado com sucesso').goAway(3000)
           this.$router.push('/profhealthcare')
       })
       .catch((error) => {
+          this.$toast.error('Erro ao criar prescrição').goAway(3000)
           this.errorMsg = error.response.data
       })
     },

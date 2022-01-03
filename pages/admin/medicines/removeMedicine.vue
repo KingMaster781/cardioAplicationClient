@@ -64,9 +64,11 @@
         remove(){
             this.$axios.$delete('/api/medicine/' + this.code)
                 .then(() => {
-                    this.$router.push('/profhealthcare')
+                    this.$toast.success('Medicamento eliminado com sucesso').goAway(3000)
+                    this.$router.push('/admin')
                 })
                 .catch((error) => {
+                    this.$toast.error('Erro a eliminar medicamento').goAway(3000)
                     this.errorMsg = error.response.data
                 })
         },

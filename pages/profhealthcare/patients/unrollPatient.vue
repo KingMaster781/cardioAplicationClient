@@ -81,9 +81,11 @@ export default {
       console.log(this.$auth.user.groups)
       this.$axios.$put('/api/profhealthcares/' + this.username + '/unroll-patient/',{username: this.patientUsername})
         .then(() => {
+          this.$toast.success('Paciente dessassociado com sucesso').goAway(3000)
           this.$router.push('/profhealthcare')
         })
         .catch((e)=>{
+          this.$toast.error('Erro ao dessassociar paciente').goAway(3000)
           this.errorMsg = e.response.data
         })
     },

@@ -65,9 +65,11 @@
         remove(){
             this.$axios.$delete('/api/program/' + this.code)
                 .then(() => {
+                    this.$toast.success('Programa eliminado com sucesso').goAway(3000)
                     this.$router.push('/profhealthcare')
                 })
                 .catch((error) => {
+                    this.$toast.error('Erro ao eliminar programa').goAway(3000)
                     this.errorMsg = error.response.data
                 })
         },

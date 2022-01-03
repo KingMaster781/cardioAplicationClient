@@ -87,9 +87,11 @@ export default {
         valorMinimo: this.valorMinimo,
       })
       .then(() => {
+        this.$toast.success('Tipo de dado criado com sucesso').goAway(3000)
         this.$router.push('/admin/typeOfData')
       })
       .catch((error) => {
+        this.$toast.error('Erro a criar tipo de dado').goAway(3000)
         this.errorMsg = error.response.data;
       });
   },

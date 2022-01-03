@@ -94,6 +94,7 @@
                             this.prescriptions = prescription
                         })
                         .catch((error) => {
+                            this.$toast.error('Erro a consultar prescrição').goAway(3000)
                             this.errorMsg = error.response.data
                         })
                     })

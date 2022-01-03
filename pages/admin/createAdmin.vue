@@ -160,9 +160,11 @@ export default {
         email: this.email,
       })
         .then(() => {
+          this.$toast.success('Admin criado com sucesso').goAway(3000)
           this.$router.push('/admin')
         })
         .catch((error) => {
+          this.$toast.error('Erro a criar admin').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

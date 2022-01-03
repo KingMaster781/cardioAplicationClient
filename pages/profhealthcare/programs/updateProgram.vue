@@ -159,13 +159,15 @@
                     this.selectExercises.forEach(exercise=>{
                         this.enroll(exercise)
                     })
-                    /*if(this.errorMsg == null)
+                    if(this.errorMsg == null)
                     {
+                        this.$toast.success('Programa atualizado com sucesso').goAway(3000)
                         this.$router.push('/profhealthcare')
-                    }*/
+                    }
             })
             .catch((error) => {
-                this.errorMsg = error
+                this.$toast.error('Erro ao atualizar programa').goAway(3000)
+                this.errorMsg = error.response.data
             })
             
         },
@@ -187,7 +189,7 @@
                             //console.log("success1")
                         })
                         .catch((e)=>{
-                            this.errorMsg = e
+                            this.errorMsg = e.response.data
                         })
                     })
             })
@@ -200,7 +202,7 @@
                 //console.log("success2")
             })
             .catch((e)=>{
-                this.errorMsg = e
+                this.errorMsg = e.response.data
             })
         },
     }

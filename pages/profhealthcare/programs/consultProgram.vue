@@ -75,6 +75,7 @@
                     this.programs = [program]
                 })
                 .catch((error) => {
+                    this.$toast.error('Erro ao consultar programa').goAway(3000)
                     this.errorMsg = error
                 })
         },

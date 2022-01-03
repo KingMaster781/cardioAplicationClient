@@ -132,9 +132,11 @@
                 descExercise: this.desc,
             })
             .then(() => {
+                this.$toast.success('Exercicio criado com sucesso').goAway(3000)
                 this.$router.push('/profhealthcare')
             })
             .catch((error) => {
+                this.$toast.error('Erro a criar exercicio').goAway(3000)
                 this.errorMsg = error.response.data
             })
         },

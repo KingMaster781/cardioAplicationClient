@@ -76,6 +76,7 @@ export default {
           this.healthcare = [healthcare]
         })
         .catch((error) => {
+          this.$toast.error('Um erro ocorreu').goAway(3000)
           this.errorMsg = error.response.data
         })
     },

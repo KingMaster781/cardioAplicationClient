@@ -163,9 +163,11 @@
                 warning: this.warning
             })
             .then(() => {
-                this.$router.push('/profhealthcare')
+                this.$toast.success('Medicamento criado com sucesso').goAway(3000)
+                this.$router.push('/admin')
             })
             .catch((error) => {
+                this.$toast.error('Erro ao criar medicamento').goAway(3000)
                 this.errorMsg = error.response.data
             })
         },

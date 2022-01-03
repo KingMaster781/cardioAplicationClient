@@ -66,9 +66,11 @@
         remove(){
             this.$axios.$delete('/api/exercise/' + this.code)
                 .then(() => {
+                    this.$toast.success('Exercicio eliminado com sucesso').goAway(3000)
                     this.$router.push('/profhealthcare')
                 })
                 .catch((error) => {
+                    this.$toast.error('Erro a eliminar exercicio').goAway(3000)
                     this.errorMsg = error.response.data
                 })
         },

@@ -74,6 +74,7 @@ export default {
           this.admin = [admin]
         })
         .catch((error) => {
+          this.$toast.error('Erro a consultar admin').goAway(3000)
           this.errorMsg = error.response.data
         })
     },
