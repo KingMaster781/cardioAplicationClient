@@ -1,0 +1,30 @@
+{
+  "name": "cardioaplication-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^2.0.6",
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/toast": "^3.3.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.7.2",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.15.1",
+    "jquery": "^3.6.0",
+    "mbvue": "^1.0.3",
+    "mdbvue": "^6.7.3",
+    "nuxt": "^2.15.7",
+    "nuxt-fontawesome": "^0.4.0",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {}
+}
