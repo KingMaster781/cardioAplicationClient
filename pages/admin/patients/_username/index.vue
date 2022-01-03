@@ -61,12 +61,12 @@
       
       <b-table striped over :items="profHealthcares" :fields="fieldExam">
         <template v-slot:cell(actions)="row">
-          <b-button variant="info" :to="`/admin/patients/${row.item.username}`">
+          <b-button variant="info" :to="`/admin/patients/${$route.params.username}/exames`">
             <fa :icon="['fas', 'info-circle']" />
           </b-button>
           <b-button
             variant="primary"
-            :to="`/admin/patients/${row.item.username}/edit`"
+            :to="`/admin/patients/${$route.params.username}/exames/${row.item.code}/edit`"
           >
             <fa :icon="['fas', 'pen']" />
           </b-button>

@@ -6,15 +6,6 @@
       <h2>Atualizar um Determinado Paciente</h2>
       <br>
       <form @submit.prevent="update" :disabled="!isFormValid">
-            <b-form-group
-                id="username"
-                description="O username é necessário"
-                label-for="username"
-                :invalid-feedback="invalidUsernameFeedback"
-                :state="isUsernameValid"
-            >
-            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do paciente" />
-            </b-form-group>
                 <b-form-group
                     id="password"
                     description="A password é necessária"
@@ -65,25 +56,7 @@ export default {
     }
   },
   computed: {
-      invalidUsernameFeedback () {
-      if (!this.username) {
-        return null
-      }
-      let usernameLen = this.username.length
-      if (usernameLen < 3 || usernameLen > 30) {
-        return 'The username must be between [3, 30] characters.'
-      }
-      return ''
-    },
-
-    isUsernameValid () {
-      if (!this.invalidUsernameFeedback === null) {
-        return null
-      }
-      return this.invalidUsernameFeedback === ''
-    },
-
-    invalidPasswordFeedback () {
+      invalidPasswordFeedback () {
       if (!this.password) {
         return null
       }
@@ -137,9 +110,6 @@ export default {
       return this.invalidEmailFeedback === ''
     },
      isFormValid () {
-      if (! this.isUsernameValid) {
-        return false
-      }
       if (! this.isPasswordValid) {
         return false
       }
@@ -154,7 +124,7 @@ export default {
   },
   methods: {
     update() {
-      this.$axios.$put('/api/patientusers/' + this.username, {
+      this.$axios.$put('/api/patientusers/' + this.$route.params.username, {
         name: this.name,
         email: this.email,
         password: this.password,

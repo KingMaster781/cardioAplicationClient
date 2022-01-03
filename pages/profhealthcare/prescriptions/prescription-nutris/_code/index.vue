@@ -25,7 +25,7 @@
  </template>
 
 <script>
-import ProfHealthNavBar from '../../../../components/ProfHealthNavBar.vue'
+import ProfHealthNavBar from '../../../../../components/ProfHealthNavBar.vue'
   export default {
   components: { ProfHealthNavBar },
     data() {

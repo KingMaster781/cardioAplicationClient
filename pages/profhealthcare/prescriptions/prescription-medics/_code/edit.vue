@@ -6,15 +6,6 @@
         <br>
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
-                id="code"
-                description="O código é necessário"
-                label-for="code"
-                :invalid-feedback="invalidCodeFeedback"
-                :state="isCodeValid"
-            >
-            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código da prescrição" />
-            </b-form-group>
-            <b-form-group
                 id="duracao"
                 description="A duração é necessária"
                 label-for="duracao"
@@ -45,24 +36,6 @@
     },
     
     computed: {
-        invalidCodeFeedback () {
-            if (!this.code) {
-                return null
-            }
-            let codeLen = this.code.length
-            if (codeLen < 1 || codeLen > 30) {
-                return 'The code must be between [1, 30] number characters.'
-            }
-            return ''
-        },
-
-        isCodeValid () {
-            if (!this.invalidCodeFeedback === null) {
-                return null
-            }
-            return this.invalidCodeFeedback === ''
-        },
-
         invalidDuracaoFeedback () {
             if (!this.duracao) {
                 return null
@@ -81,9 +54,6 @@
         },
 
          isFormValid () {
-            if (! this.isCodeValid) {
-                return false
-            }
             if (! this.isDuracaoValid) {
                 return false
             }
@@ -93,7 +63,7 @@
 
     methods: {
         analiseUpdateisPermited(){
-            this.$axios.$get('/api/prescription-medics/' + this.code)
+            this.$axios.$get('/api/prescription-medics/' + this.$route.params.code)
             .then((prescription) => {
                 if(prescription.vigor==="Está em vigor")
                 {
@@ -109,7 +79,7 @@
             })
         },
         update(){
-            this.$axios.$put('/api/prescription-medics/' + this.code, {
+            this.$axios.$put('/api/prescription-medics/' + this.$route.params.code, {
                 duracao: this.duracao,
             })
             .then(() => {
