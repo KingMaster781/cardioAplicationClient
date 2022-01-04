@@ -2,7 +2,7 @@
   <div>
     <admin-nav-bar />
     <b-container>
-      <h4>Dados Biométricos do Paciente: {{ patient.username}}</h4>
+      <h4>Paciente: {{ patient.username}}</h4>
       <br>
       <p>Username: {{ patient.username }}</p>
       <p>Name: {{ patient.name }}</p>
@@ -23,26 +23,6 @@
             :to="`/admin/healthcares/${row.item.username}/edit`"
           >
             <fa :icon="['fas', 'pen']" />
-          </b-button>
-        </template>
-      </b-table>
-      <br />
-      <div>
-        <h5 style="float: left">Dados biométricos do cliente</h5>
-      </div>
-      <b-table striped over :items="data" :fields="fieldData">
-        <template v-slot:cell(actions)="row">
-          <b-button variant="info" :to="`/admin/patients/${$route.params.username}/dados/${row.item.code}`">
-            <fa :icon="['fas', 'info-circle']" />
-          </b-button>
-          <b-button
-            variant="primary"
-            :to="`/admin/patients/${$route.params.username}/dados/${row.item.code}/edit`"
-          >
-            <fa :icon="['fas', 'pen']" />
-          </b-button>
-          <b-button variant="danger">
-            <fa :icon="['fas', 'trash']" @click="removeData(row.item.code)" />
           </b-button>
         </template>
       </b-table>

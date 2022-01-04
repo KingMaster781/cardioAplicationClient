@@ -53,21 +53,6 @@
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.pp><a>Prescrições de Programas de Reabilitação Cardiaca</a></div>
         <b-collapse id="pp" accordion="my-accordion" role="tabpanel">
           <a href="/profhealthcare/prescriptions/consultPrescription">Consultar uma determinada Prescrição</a>
-          <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.pe><a>Prescrições de Exercicio</a></div>
-          <b-collapse id="pe" accordion="my-accordion-2" role="tabpanel">
-            <a href="/profhealthcare/prescriptions/prescription-exercises/createPrescription">Criar uma nova prescrição</a>
-            <a href="/profhealthcare/prescriptions/prescription-exercises/updateDurationPrescription">Atualizar a duração de uma determinada prescrição</a>
-          </b-collapse>
-          <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.pm><a>Prescrições Medicas</a></div>
-          <b-collapse id="pm" accordion="my-accordion-2" role="tabpanel">
-            <a href="/profhealthcare/prescriptions/prescription-medics/createPrescription">Criar uma nova prescrição</a>
-            <a href="/profhealthcare/prescriptions/prescription-medics/updateDurationPrescription">Atualizar a duração de uma determinada prescrição</a>
-          </b-collapse>
-          <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.pn><a>Prescrições de Nutrição</a></div>
-          <b-collapse id="pn" accordion="my-accordion-2" role="tabpanel">
-            <a href="/profhealthcare/prescriptions/prescription-nutris/createPrescription">Criar uma nova prescrição</a>
-            <a href="/profhealthcare/prescriptions/prescription-nutris/updateDurationPrescription">Atualizar a duração de uma determinada prescrição</a>
-          </b-collapse>
         </b-collapse>
       </div>
     </div>

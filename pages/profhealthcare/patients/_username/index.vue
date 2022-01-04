@@ -9,6 +9,14 @@
       <p>Username: {{ patient.username }}</p>
       <p>Nome: {{ patient.name }}</p>
       <p>Email: {{ patient.email }}</p>
+      <p><nuxt-link
+        :to="`/profhealthcare/patients/${$route.params.username}/dados`"
+        >Ver dados biométricos do paciente</nuxt-link
+      ></p>
+      <p><nuxt-link
+        :to="`/profhealthcare/patients/${$route.params.username}/exams`"
+        >Ver exames do paciente</nuxt-link
+      ></p>
       <h5>Lista de Profissionais de Saude que seguem este paciente:</h5>
       <b-table
         v-if="profHealthcares.length"
@@ -19,6 +27,13 @@
       />
       <br />
       <h5>Prescrições de Exercicios:</h5>
+      <b-button
+        variant="success"
+        :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-exercises/createPrescription`"
+        >Criar novo registo
+        <fa :icon="['fas', 'plus']" />
+      </b-button>
+      <br />
       <b-table
         v-if="prescriptionsExercise.length"
         striped
@@ -29,13 +44,13 @@
         <template v-slot:cell(actions)="row">
           <b-button
             variant="info"
-            :to="`/profhealthcare/prescriptions/prescription-exercises/${row.item.code}`"
+            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-exercises/${row.item.code}`"
           >
             <fa :icon="['fas', 'info-circle']" />
           </b-button>
           <b-button
             variant="primary"
-            :to="`/profhealthcare/prescriptions/prescription-exercises/${row.item.code}/edit`"
+            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-exercises/${row.item.code}/edit`"
           >
             <fa :icon="['fas', 'pen']" />
           </b-button>
@@ -47,6 +62,13 @@
       <h6 v-else>Não possui prescrições de exercicios</h6>
       <br />
       <h5>Prescrições Médicas:</h5>
+      <b-button
+        variant="success"
+        :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-medics/createPrescription`"
+        >Criar novo registo
+        <fa :icon="['fas', 'plus']" />
+      </b-button>
+      <br />
       <b-table
         v-if="prescriptionsMedics.length"
         striped
@@ -57,13 +79,13 @@
         <template v-slot:cell(actions)="row">
           <b-button
             variant="info"
-            :to="`/profhealthcare/prescriptions/prescription-medics/${row.item.code}`"
+            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-medics/${row.item.code}`"
           >
             <fa :icon="['fas', 'info-circle']" />
           </b-button>
           <b-button
             variant="primary"
-            :to="`/profhealthcare/prescriptions/prescription-medics/${row.item.code}/edit`"
+            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-medics/${row.item.code}/edit`"
           >
             <fa :icon="['fas', 'pen']" />
           </b-button>
@@ -75,6 +97,12 @@
       <h6 v-else>Não possui prescrições médicas</h6>
       <br />
       <h5>Prescrições de Nutrição:</h5>
+      <b-button
+        variant="success"
+        :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-nutris/createPrescription`"
+        >Criar novo registo
+        <fa :icon="['fas', 'plus']" />
+      </b-button>
       <b-table
         v-if="prescriptionsNutris.length"
         striped
@@ -85,13 +113,13 @@
         <template v-slot:cell(actions)="row">
           <b-button
             variant="info"
-            :to="`/profhealthcare/prescriptions/prescription-nutris/${row.item.code}`"
+            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-nutris/${row.item.code}`"
           >
             <fa :icon="['fas', 'info-circle']" />
           </b-button>
           <b-button
             variant="primary"
-            :to="`/profhealthcare/prescriptions/prescription-nutris/${row.item.code}/edit`"
+            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-nutris/${row.item.code}/edit`"
           >
             <fa :icon="['fas', 'pen']" />
           </b-button>

@@ -1,33 +1,28 @@
 <template>
   <div>
     <prof-health-nav-bar />
+    <br /><br />
     <b-container>
-      <h2>Consultar todos os Programas</h2>
+      <h2>Consultar todos os Exercícios Fisicos</h2>
       <br />
       <b-button
         variant="success"
         style="float: right"
-        :to="`/profhealthcare/programs/createProgram`"
+        :to="`/profhealthcare/exercises/createExercise`"
         >Criar novo registo
         <fa :icon="['fas', 'plus']" />
       </b-button>
-      <b-table
-        v-if="programs.length"
-        striped
-        over
-        :items="programs"
-        :fields="fields"
-      >
+      <b-table striped over :items="exercises" :fields="fields">
         <template v-slot:cell(actions)="row">
           <b-button
             variant="info"
-            :to="`/profhealthcare/programs/${row.item.code}`"
+            :to="`/profhealthcare/exercises/${row.item.code}`"
           >
             <fa :icon="['fas', 'info-circle']" />
           </b-button>
           <b-button
             variant="primary"
-            :to="`/profhealthcare/programs/${row.item.code}/edit`"
+            :to="`/profhealthcare/exercises/${row.item.code}/edit`"
           >
             <fa :icon="['fas', 'pen']" />
           </b-button>
@@ -36,8 +31,6 @@
           </b-button>
         </template>
       </b-table>
-      <h5 v-else>Não existem atualmente programas inseridos na plantaforma</h5>
-      <br />
       <p align="center">
         <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
       </p>
@@ -49,13 +42,13 @@
 export default {
   data() {
     return {
-      fields: ["code", "name", "descProgram", "actions"],
-      programs: [],
+      fields: ["code", "name", "descExercise", "actions"],
+      exercises: [],
     };
   },
   created() {
-    this.$axios.$get("api/program/").then((program) => {
-      this.programs = program;
+    this.$axios.$get("api/exercise/").then((exercise) => {
+      this.exercises = exercise;
     });
   },
   methods: {
@@ -63,16 +56,15 @@ export default {
       this.$auth.logout();
       this.$router.push("/");
     },
-    remove(item) {
-      this.$axios
-        .$delete("/api/program/" + item)
-        .then(() => {
-          this.$router.push("/profhealthcare/programs");
-        })
-        .catch((error) => {
-          this.errorMsg = error.response.data;
-        });
-    },
+    remove(item){
+            this.$axios.$delete('/api/exercise/' + item)
+                .then(() => {
+                    this.$router.push('/profhealthcare/exercises')
+                })
+                .catch((error) => {
+                    this.errorMsg = error.response.data
+                })
+        },
   },
 };
 </script>

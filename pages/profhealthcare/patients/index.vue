@@ -7,7 +7,12 @@
       <br>
       <b-table v-if = "patients.length" striped over :items="patients" :fields="fields">
         <template v-slot:cell(actions)="row">
-          <nuxt-link class="btn btn-link" :to="`/profhealthcare/patients/${row.item.username}`">Detalhes</nuxt-link>
+          <b-button
+            variant="info"
+            :to="`/profhealthcare/patients/${row.item.username}`"
+          >
+            <fa :icon="['fas', 'info-circle']" />
+          </b-button>
         </template>
       </b-table>
       <br>

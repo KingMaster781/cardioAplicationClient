@@ -107,7 +107,7 @@ export default {
         password: this.password
       })
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/admin/admins')
         })
         .catch((error) => {
           this.errorMsg = error.response.data

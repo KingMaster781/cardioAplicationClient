@@ -132,7 +132,7 @@
                 descExercise: this.desc,
             })
             .then(() => {
-                this.$router.push('/profhealthcare')
+                this.$router.push('/profhealthcare/exercises')
             })
             .catch((error) => {
                 this.errorMsg = error.response.data

@@ -20,12 +20,29 @@
         </button>
       </div>
       <br />
+      <div>
+        <button
+          class="btn btn-secondary btn-lg btn-block"
+          @click.prevent="exercises"
+        >
+          Exercicios de reabilitação cardiaca
+        </button>
+      </div>
+      <br />
+      <div>
+        <button
+          class="btn btn-secondary btn-lg btn-block"
+          @click.prevent="programs"
+        >
+          Programas de reabilitação cardiaca
+        </button>
+      </div>
+      <br />
       </div>
   </div>
 </template>
 
 <script>
-import ProfHealthNavBar from "../../components/ProfHealthNavBar.vue";
 export default {
   methods: {
     medicamentos() {
@@ -33,6 +50,12 @@ export default {
     },
     pacientes() {
       this.$router.push("/profhealthcare/patients");
+    },
+    exercises() {
+      this.$router.push("/profhealthcare/exercises");
+    },
+    programs() {
+      this.$router.push("/profhealthcare/programs");
     },
   },
   created() {

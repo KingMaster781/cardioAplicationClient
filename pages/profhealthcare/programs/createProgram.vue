@@ -167,7 +167,7 @@
                 })
                 if(this.errorMsg == null)
                 {
-                    this.$router.push('/profhealthcare')
+                    this.$router.push('/profhealthcare/programs')
                 }
             })
             .catch((error) => {

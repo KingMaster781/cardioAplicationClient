@@ -30,15 +30,12 @@
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.db><a>Dados Biomédicos</a></div>
         <b-collapse id="db" accordion="my-accordion" role="tabpanel">
-          <a href="#">Consultar Dados Biomédicos</a>
-          <a href="#">Consultar Dados Biomédicos por um determinado tipo</a>
-          <a href="#">Inserir Dados Biomédicos</a>
+          <a href="/patients/dados">Consultar Dados Biomédicos</a>
           <a href="#">Inserir Documento com Dados Biomédicos</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ex><a>Exames</a></div>
         <b-collapse id="ex" accordion="my-accordion" role="tabpanel">
-          <a href="#">Consultar Exames</a>
-          <a href="#">Consultar Exames Realizados</a>
+          <a href="/patients/exams">Consultar Exames</a>
           <a href="#">Inserir Documento com Exame Realizado</a>
         </b-collapse>
       </div>

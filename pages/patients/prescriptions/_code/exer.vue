@@ -20,9 +20,7 @@
  </template>
 
 <script>
-import PatientNavBar from '../../../../components/PatientNavBar.vue'
   export default {
-  components: { PatientNavBar },
     data() {
         return {
             exercises: [],

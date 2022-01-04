@@ -34,7 +34,6 @@
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ad><a>Administradores</a></div>
         <b-collapse id="ad" accordion="my-accordion" role="tabpanel">
           <a href="/admin/admins">Lista de Admins</a>
-          <a href="/admin/consultAdmin">Consultar um determinado Admin</a>
           <a href="/admin/admins/createAdmin">Criar um Admin</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.tdd><a>Tipos de dados</a></div>
