@@ -29,10 +29,6 @@
       <br />
       <div>
         <h5 style="float: left">Dados biométricos do cliente</h5>
-        <b-button variant="success" style="float: right" :to="`/admin/patients/${$route.params.username}/dados/create`"
-        >Criar novos dados
-        <fa :icon="['fas', 'plus']" />
-      </b-button>
       </div>
       <b-table striped over :items="data" :fields="fieldData">
         <template v-slot:cell(actions)="row">
@@ -51,30 +47,6 @@
         </template>
       </b-table>
       <br />
-      <div>
-        <h5 style="float: left">Exames realizados pelo paciente</h5>
-        <b-button variant="success" style="float: right" :to="`/admin/patients/${$route.params.username}/exames/create`"
-        >Criar novo exame
-        <fa :icon="['fas', 'plus']" />
-      </b-button>
-      </div>
-      
-      <b-table striped over :items="profHealthcares" :fields="fieldExam">
-        <template v-slot:cell(actions)="row">
-          <b-button variant="info" :to="`/admin/patients/${$route.params.username}/exames`">
-            <fa :icon="['fas', 'info-circle']" />
-          </b-button>
-          <b-button
-            variant="primary"
-            :to="`/admin/patients/${$route.params.username}/exames/${row.item.code}/edit`"
-          >
-            <fa :icon="['fas', 'pen']" />
-          </b-button>
-          <b-button variant="danger">
-            <fa :icon="['fas', 'trash']" />
-          </b-button>
-        </template>
-      </b-table>
       <nuxt-link to="/admin/patients">Back</nuxt-link>
     </b-container>
   </div>
@@ -122,11 +94,6 @@ export default {
         .$get("/api/data/patient/" + this.patient.username)
         .then((datas) => {
           this.data = datas;
-        });
-      this.$axios
-        .$get("/api/exams/user/" + this.patient.username)
-        .then((exams) => {
-          this.exam = exams;
         });
     });
   },

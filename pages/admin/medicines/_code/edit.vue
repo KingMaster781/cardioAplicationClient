@@ -7,15 +7,6 @@
         <br>
         <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
-                id="code"
-                description="O código é necessário"
-                label-for="code"
-                :invalid-feedback="invalidCodeFeedback"
-                :state="isCodeValid"
-            >
-            <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do medicamento" />
-            </b-form-group>
-            <b-form-group
                 id="name"
                 description="O nome é necessário"
                 label-for="name"
@@ -65,23 +56,6 @@
     },
 
     computed: {
-        invalidCodeFeedback () {
-            if (!this.code) {
-                return null
-            }
-            let codeLen = this.code.length
-            if (codeLen < 1 || codeLen > 30) {
-                return 'The code must be between [1, 30] number characters.'
-            }
-            return ''
-        },
-
-        isCodeValid () {
-            if (!this.invalidCodeFeedback === null) {
-                return null
-            }
-            return this.invalidCodeFeedback === ''
-        },
 
         invalidNameFeedback () {
             if (!this.name) {
@@ -138,9 +112,6 @@
         },
 	
         isFormValid () {
-            if (! this.isCodeValid) {
-                return false
-            }
             if (! this.isNameValid) {
                 return false
             }
@@ -156,7 +127,7 @@
 
     methods: {
         update() {
-            this.$axios.$put('/api/medicine/' + this.code, {
+            this.$axios.$put('/api/medicine/' + this.$route.params.code, {
                 name: this.name,
                 description: this.desc,
                 warning: this.warning

@@ -2,9 +2,9 @@
   <div>
     <admin-nav-bar/>
     <b-container>
-      <h2>Atualizar um determinado admin</h2>
+      <h2>Criar um Admin</h2>
       <br>
-      <form @submit.prevent="update" :disabled="!isFormValid">
+      <form @submit.prevent="create" :disabled="!isFormValid">
             <b-form-group
                 id="username"
                 description="O username é necessário"
@@ -34,7 +34,7 @@
             </b-form-group>
                 <b-form-group
                     id="email"
-                    description="O email é necessário e deve possuir o prefixo @mycardio.pt"
+                    description="O email é necessário e com o prefixo @mycardio.pt"
                     label-for="email"
                     :invalid-feedback="invalidEmailFeedback"
                     :state="isEmailValid"
@@ -44,7 +44,7 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary btn-lg btn-block" @click.prevent="update" :disabled="!isFormValid">Atualizar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="create" :disabled="!isFormValid">Criar</button>
             <br>
             <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
@@ -152,23 +152,26 @@ export default {
     }
   },
   methods: {
-    update() {
-      this.$axios.$put('/api/admin/' + this.username, {
+    create() {
+      this.$axios.$post('/api/admin', {
+        username: this.username,
+        password: this.password,
         name: this.name,
         email: this.email,
-        password: this.password,
       })
         .then(() => {
-          this.$router.push('/admin')
+          this.$router.push('/admin/admins')
         })
         .catch((error) => {
           this.errorMsg = error.response.data
         })
     },
-    signOut(){
+    methods: {
+      signOut(){
         this.$auth.logout()
         this.$router.push('/')
       }
+    }
   }
 }
 </script>

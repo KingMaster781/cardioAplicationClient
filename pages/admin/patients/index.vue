@@ -2,10 +2,6 @@
   <div>
    <admin-nav-bar/>
     <b-container>
-      <b-button variant="success" style="float: right" :to="`/admin/patients/create`"
-        >Criar novo registo
-        <fa :icon="['fas', 'plus']" />
-      </b-button>
       <h2>Consultar todos os Pacientes</h2>
       <br>
       <b-table striped over :items="patients" :fields="fields">

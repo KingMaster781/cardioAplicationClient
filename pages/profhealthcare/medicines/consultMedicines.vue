@@ -7,7 +7,9 @@
         <br>
         <b-table striped over :items="medicines" :fields="fields">
             <template v-slot:cell(actions)="row">
-            <nuxt-link class="btn btn-link" :to="`/profhealthcare/medicines/${row.item.code}`">Detalhes</nuxt-link>
+              <b-button variant="info" :to="`/profhealthcare/medicines/${row.item.code}`">
+            <fa :icon="['fas', 'info-circle']" />
+          </b-button>
             </template>
         </b-table>
         <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>

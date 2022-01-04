@@ -2,27 +2,9 @@
   <div>
     <admin-nav-bar/>
     <b-container>
-      <h2>Criar um Admin</h2>
+      <h2>Atualizar um determinado admin</h2>
       <br>
-      <form @submit.prevent="create" :disabled="!isFormValid">
-            <b-form-group
-                id="username"
-                description="O username é necessário"
-                label-for="username"
-                :invalid-feedback="invalidUsernameFeedback"
-                :state="isUsernameValid"
-            >
-            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do admin" />
-            </b-form-group>
-                <b-form-group
-                    id="password"
-                    description="A password é necessária"
-                    label-for="password"
-                    :invalid-feedback="invalidPasswordFeedback"
-                    :state="isPasswordValid"
-                >
-            <b-input v-model="password" :state="isPasswordValid" required placeholder="Insira a password do admin" />
-            </b-form-group>
+      <form @submit.prevent="update" :disabled="!isFormValid">
                 <b-form-group
                     id="name"
                     description="O nome é necessário"
@@ -34,7 +16,7 @@
             </b-form-group>
                 <b-form-group
                     id="email"
-                    description="O email é necessário e com o prefixo @mycardio.pt"
+                    description="O email é necessário e deve possuir o prefixo @mycardio.pt"
                     label-for="email"
                     :invalid-feedback="invalidEmailFeedback"
                     :state="isEmailValid"
@@ -44,7 +26,7 @@
             <p v-show="errorMsg" class="text-danger">
                 {{ errorMsg }}
             </p>
-            <button class="btn btn-primary btn-lg btn-block" @click.prevent="create" :disabled="!isFormValid">Criar</button>
+            <button class="btn btn-primary btn-lg btn-block" @click.prevent="update" :disabled="!isFormValid">Atualizar</button>
             <br>
             <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
         </form>
@@ -63,43 +45,15 @@ export default {
       errorMsg: false
     }
   },
+  created() {
+        this.$axios.$get(`/api/admin/${this.$route.params.username}`)
+        .then(healthcare => {
+            this.name = healthcare.name,
+            this.email = healthcare.email,
+            this.password = healthcare.password
+        })
+    },
   computed: {
-      invalidUsernameFeedback () {
-      if (!this.username) {
-        return null
-      }
-      let usernameLen = this.username.length
-      if (usernameLen < 3 || usernameLen > 30) {
-        return 'The username must be between [3, 30] characters.'
-      }
-      return ''
-    },
-
-    isUsernameValid () {
-      if (!this.invalidUsernameFeedback === null) {
-        return null
-      }
-      return this.invalidUsernameFeedback === ''
-    },
-
-    invalidPasswordFeedback () {
-      if (!this.password) {
-        return null
-      }
-      let passwordLen = this.password.length
-      if (passwordLen < 3 || passwordLen > 255) {
-        return false
-      }
-      return ''
-    },
-
-    isPasswordValid () {
-      if (!this.invalidPasswordFeedback === null) {
-        return null
-      }
-      return this.invalidUsernameFeedback === ''
-    },
-
     invalidNameFeedback () {
       if (!this.name) {
         return null
@@ -136,12 +90,6 @@ export default {
       return this.invalidEmailFeedback === ''
     },
      isFormValid () {
-      if (! this.isUsernameValid) {
-        return false
-      }
-      if (! this.isPasswordValid) {
-        return false
-      }
       if (! this.isNameValid) {
         return false
       }
@@ -152,12 +100,11 @@ export default {
     }
   },
   methods: {
-    create() {
-      this.$axios.$post('/api/admin', {
-        username: this.username,
-        password: this.password,
+    update() {
+      this.$axios.$put('/api/admin/' + this.$route.params.username, {
         name: this.name,
         email: this.email,
+        password: this.password
       })
         .then(() => {
           this.$router.push('/admin')
@@ -166,12 +113,10 @@ export default {
           this.errorMsg = error.response.data
         })
     },
-    methods: {
-      signOut(){
+    signOut(){
         this.$auth.logout()
         this.$router.push('/')
       }
-    }
   }
 }
 </script>

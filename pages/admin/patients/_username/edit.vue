@@ -5,24 +5,6 @@
       <h2>Atualizar um Determinado Paciente</h2>
       <br>
       <form @submit.prevent="update" :disabled="!isFormValid">
-            <b-form-group
-                id="username"
-                description="O username é necessário"
-                label-for="username"
-                :invalid-feedback="invalidUsernameFeedback"
-                :state="isUsernameValid"
-            >
-            <b-input v-model.trim="username" :state="isUsernameValid" required placeholder="Insira o username do paciente" />
-            </b-form-group>
-                <b-form-group
-                    id="password"
-                    description="A password é necessária"
-                    label-for="password"
-                    :invalid-feedback="invalidPasswordFeedback"
-                    :state="isPasswordValid"
-                >
-            <b-input v-model="password" :state="isPasswordValid" required placeholder="Insira a password do paciente" />
-            </b-form-group>
                 <b-form-group
                     id="name"
                     description="O nome é necessário"
@@ -144,7 +126,7 @@ export default {
     }
   },
   created() {
-        this.$axios.$get(`/api/profhealthcares/${this.$route.params.username}`)
+        this.$axios.$get(`/api/patientusers/${this.$route.params.username}`)
         .then(healthcare => {
             this.name = healthcare.name,
             this.email = healthcare.email,
@@ -153,14 +135,14 @@ export default {
     },
   methods: {
     update() {
-      this.$axios.$put('/api/profhealthcares/' + this.$route.params.username, {
+      this.$axios.$put('/api/patientusers/' + this.$route.params.username, {
         username: this.$route.params.username,
         name: this.name,
         email: this.email,
         password: this.password
       })
         .then(() => {
-          this.$router.push('/admin/healthcares')
+          this.$router.push('/admin/patients')
         })
         .catch((error) => {
           this.errorMsg = error.response.data

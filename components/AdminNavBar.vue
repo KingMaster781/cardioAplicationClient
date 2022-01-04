@@ -20,40 +20,34 @@
       <div class="list-group">
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.pa><a>Pacientes</a></div>
         <b-collapse id="pa" accordion="my-accordion" role="tabpanel">
-          <a href="/admin/patients/consultPatients">Lista de Pacientes</a>
+          <a href="/admin/patients/">Lista de Pacientes</a>
           <a href="/admin/patients/consultPatient">Consultar um determinado Paciente</a>
           <a href="/admin/patients/sendEmailPatientUser">Enviar uma mensagem a um paciente</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ps><a>Profissionais de Saude</a></div>
         <b-collapse id="ps" accordion="my-accordion" role="tabpanel">
-          <a href="/admin/healthcares/consultHealthcares">Lista de Profissionais de Saude</a>
+          <a href="/admin/healthcares/">Lista de Profissionais de Saude</a>
           <a href="/admin/healthcares/consultHealthcare">Consultar um determinado Profissional de Saude</a>
           <a href="/admin/healthcares/createHealthcare">Criar um Profissional de Saude</a>
-          <a href="/admin/healthcares/removeHealthcare">Remover um determinado Profissional de Saude</a>
-          <a href="/admin/healthcares/updateHealthcare">Atualiza um determinado Profissional de Saude</a>
-          <a href="/admin/healthcares/enrollPatient">Associar utente a Profissional de Saude</a>
-          <a href="/admin/healthcares/unrollPatient">Dessassociar utente de Profissional de Saude</a>
           <a href="/admin/healthcares/sendEmailProfHealthcare">Enviar uma mensagem a um profissional de saude</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.ad><a>Administradores</a></div>
         <b-collapse id="ad" accordion="my-accordion" role="tabpanel">
-          <a href="/admin/consultAdmins">Lista de Admins</a>
+          <a href="/admin/admins">Lista de Admins</a>
           <a href="/admin/consultAdmin">Consultar um determinado Admin</a>
-          <a href="/admin/createAdmin">Criar um Admin</a>
-          <a href="/admin/removeAdmin">Remover um determinado Admin</a>
-          <a href="/admin/updateAdmin">Atualiza um determinado Admin</a>
+          <a href="/admin/admins/createAdmin">Criar um Admin</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.tdd><a>Tipos de dados</a></div>
         <b-collapse id="tdd" accordion="my-accordion" role="tabpanel">
-          <a href="/admin/createTypeDataBio">Criar um Tipo de Dados</a>
+          <a href="/admin/typeOfData">Lista de Tipos de Dados</a>
+          <a href="/admin/typeOfData/create">Criar um Tipo de Dados</a>
         </b-collapse>
         <div onmouseover="this.style.background='gray';" onmouseout="this.style.background='black'" block v-b-toggle.me><a>Medicamentos</a></div>
         <b-collapse id="me" accordion="my-accordion" role="tabpanel">
-          <a href="/admin/medicines/consultMedicines">Lista de Medicamentos</a>
+          <a href="/admin/medicines">Lista de Medicamentos</a>
           <a href="/admin/medicines/consultMedicine">Consultar um determinado Medicamento</a>
           <a href="/admin/medicines/createMedicine">Criar um Medicamento</a>
           <a href="/admin/medicines/removeMedicine">Remover um Medicamento</a>
-          <a href="/admin/medicines/updateMedicine">Atualiza um determinado Medicamento</a>
         </b-collapse>
       </div>
     </div>

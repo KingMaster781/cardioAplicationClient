@@ -55,11 +55,21 @@
         :fields="fieldsMedics"
       >
         <template v-slot:cell(actions)="row">
-          <nuxt-link
-            class="btn btn-link"
-            :to="`/profhealthcare/patients/${$route.params.username}/prescriptions/prescription-medics/${row.item.code}`"
-            >Detalhes</nuxt-link
+          <b-button
+            variant="info"
+            :to="`/profhealthcare/prescriptions/prescription-medics/${row.item.code}`"
           >
+            <fa :icon="['fas', 'info-circle']" />
+          </b-button>
+          <b-button
+            variant="primary"
+            :to="`/profhealthcare/prescriptions/prescription-medics/${row.item.code}/edit`"
+          >
+            <fa :icon="['fas', 'pen']" />
+          </b-button>
+          <b-button variant="danger">
+            <fa :icon="['fas', 'trash']" @click="removeMed(row.item.code)" />
+          </b-button>
         </template>
       </b-table>
       <h6 v-else>Não possui prescrições médicas</h6>
@@ -73,11 +83,21 @@
         :fields="fieldsNutris"
       >
         <template v-slot:cell(actions)="row">
-          <nuxt-link
-            class="btn btn-link"
-            :to="`/patients/prescriptions/prescription-nutris/${row.item.code}`"
-            >Detalhes</nuxt-link
+          <b-button
+            variant="info"
+            :to="`/profhealthcare/prescriptions/prescription-nutris/${row.item.code}`"
           >
+            <fa :icon="['fas', 'info-circle']" />
+          </b-button>
+          <b-button
+            variant="primary"
+            :to="`/profhealthcare/prescriptions/prescription-nutris/${row.item.code}/edit`"
+          >
+            <fa :icon="['fas', 'pen']" />
+          </b-button>
+          <b-button variant="danger">
+            <fa :icon="['fas', 'trash']" @click="removeNut(row.item.code)" />
+          </b-button>
         </template>
       </b-table>
       <h6 v-else>Não possui prescrições de nutrição</h6>
@@ -145,6 +165,24 @@ export default {
     removeExer(code) {
       this.$axios
         .$delete("api/prescription-exercises/" + code)
+        .then(
+          this.$axios
+            .$get(`/api/patientusers/${this.username}`)
+            .then((patient) => (this.patient = patient || {}))
+        );
+    },
+    removeMed(code) {
+      this.$axios
+        .$delete("api/prescription-medics/" + code)
+        .then(
+          this.$axios
+            .$get(`/api/patientusers/${this.username}`)
+            .then((patient) => (this.patient = patient || {}))
+        );
+    },
+    removeNut(code) {
+      this.$axios
+        .$delete("api/prescription-nutris/" + code)
         .then(
           this.$axios
             .$get(`/api/patientusers/${this.username}`)

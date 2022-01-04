@@ -5,15 +5,6 @@
             <h2>Atualizar um Determinado Programa</h2>
             <br>
             <form @submit.prevent="create" :disabled="!isFormValid">
-                <b-form-group
-                    id="code"
-                    description="O código é necessário"
-                    label-for="code"
-                    :invalid-feedback="invalidCodeFeedback"
-                    :state="isCodeValid"
-                >
-                <b-input v-model.trim="code" :state="isCodeValid" required placeholder="Insira o código do programa" />
-                </b-form-group>
                     <b-form-group
                         id="name"
                         description="O nome é necessário"
@@ -72,24 +63,6 @@
     },
 
     computed: {
-        invalidCodeFeedback () {
-            if (!this.code) {
-                return null
-            }
-            let codeLen = this.code.length
-            if (codeLen < 1 || codeLen > 30) {
-                return 'The code must be between [1, 30] number characters.'
-            }
-            return ''
-        },
-
-        isCodeValid () {
-            if (!this.invalidCodeFeedback === null) {
-                return null
-            }
-            return this.invalidCodeFeedback === ''
-        },
-
         invalidNameFeedback () {
             if (!this.name) {
                 return null
@@ -151,7 +124,7 @@
 
     methods: {
         update() {
-            this.$axios.$put('/api/program/' + this.code, {
+            this.$axios.$put('/api/program/' + this.$route.params.code, {
                 name: this.name,
                 descProgram: this.desc,
             })
@@ -176,13 +149,13 @@
         },
 
         unroll(){
-            this.$axios.$get('/api/program/' + this.code + '/exercises')
+            this.$axios.$get('/api/program/' + this.$route.params.code + '/exercises')
                 .then(exercise => {
                     this.exerciOfProgram = Object.keys(exercise).map(k => ({
                         code: exercise[k].code,
                     }))
                     this.exerciOfProgram.forEach(exer=>{
-                        this.$axios.$put('/api/program/' + this.code + '/exercises/',{code: exer.code})
+                        this.$axios.$put('/api/program/' + this.$route.params.code + '/exercises/',{code: exer.code})
                         .then(() => {
                             //console.log("success1")
                         })
@@ -195,7 +168,7 @@
         },
 
         enroll(code){
-            this.$axios.$post('/api/program/' + this.code + '/exercises/',{code: code})
+            this.$axios.$post('/api/program/' + this.$route.params.code + '/exercises/',{code: code})
             .then(() => {
                 //console.log("success2")
             })

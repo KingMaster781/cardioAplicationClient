@@ -163,7 +163,7 @@
                 warning: this.warning
             })
             .then(() => {
-                this.$router.push('/profhealthcare')
+                this.$router.push('/admin/medicines')
             })
             .catch((error) => {
                 this.errorMsg = error.response.data
