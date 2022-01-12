@@ -68,11 +68,18 @@ export default {
         return false
       }
       return true
+    },
+
+    usernameProf()
+    {
+      return this.$auth.user.sub
     }
   },
   methods: {
     send() {
       this.$axios.$post(`/api/patientusers/${this.username}/email/send`, {
+        userTo: this.username,
+        userFrom: this.usernameProf,
         subject: this.subject,
         message: this.message
       })

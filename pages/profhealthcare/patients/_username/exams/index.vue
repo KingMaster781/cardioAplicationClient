@@ -61,9 +61,9 @@ export default {
     remove(item) {
       this.$axios.$delete("api/data/" + item).then(
         this.$axios
-          .$get(`/api/exams/user/${this.$route.params.username}`)
-          .then((exams) => {
-            this.exam = exams || {};
+          .$get(`/api/exams/user/${this.$route.params.username}/list`)
+          .then((exam) => {
+            this.exams = exam || {};
           })
       );
     },

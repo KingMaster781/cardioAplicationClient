@@ -47,9 +47,7 @@
         </p>
         <button class="btn btn-primary" @click.prevent="create">Atualizar</button>
         <br />
-        <nuxt-link :to="`/admin/typeOfData`"
-          >Back</nuxt-link
-        >
+        <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
       </form>
     </b-container>
   </div>

@@ -3,11 +3,11 @@
     <prof-health-nav-bar />
     <br />
     <b-container>
-      <h4>Detalhes da Prescrição:</h4>
+      <!--<h4>Detalhes da Prescrição:</h4>
       <p>Código: {{ exam.code }}</p>
       <p>Data: {{ exam.date }}</p>
       <p>Data do resultado: {{ exam.dateResult }}</p>
-      <p>Nome do paciente: {{ exam.patientUsername }}</p>
+      <p>Nome do paciente: {{ exam.patientUsername }}</p>-->
       <p align="center">
           <a class="primary" @click="$router.go(-1)">Voltar a Trás</a>
         </p>
@@ -29,7 +29,7 @@ export default {
   },
   created() {
     this.$axios
-      .$get("/api/exams/" + this.code)
+      .$get("/api/exams/" + this.$route.params.code)
       .then((exams) => {
         this.exam = exams;
       })

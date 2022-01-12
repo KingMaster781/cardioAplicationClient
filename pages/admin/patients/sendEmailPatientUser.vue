@@ -26,7 +26,6 @@
         >
           <textarea v-model="message" class="form-control" name="message" placeholder="Escreva a sua mensagem"></textarea>
         </b-form-group>
-        <nuxt-link to="/admin">Back</nuxt-link>
         &nbsp;
         <button class="btn btn-primary btn-lg btn-block" @click.prevent="send" :disabled="!isFormValid">Enviar</button>
         <br>

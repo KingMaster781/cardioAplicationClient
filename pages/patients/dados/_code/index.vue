@@ -8,7 +8,7 @@
       <p>Data: {{ data.insertionDate }}</p>
       <p>Descrição: {{ data.descriData }}</p>
       <p>Valor: {{ data.value + " " + dataType.unidadeValorQuantitativo}}</p>
-      <nuxt-link :to="`/admin/patients/${this.$route.params.username}`">Back</nuxt-link>
+      <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>

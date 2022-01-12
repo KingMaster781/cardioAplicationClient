@@ -54,7 +54,9 @@ export default {
       }
       return ''
     },
-
+    usernamePatient(){
+      return this.$auth.user.sub
+    },
     isUsernameValid () {
       if (!this.invalidUsernameFeedback === null) {
         return null
@@ -72,6 +74,8 @@ export default {
   methods: {
     send() {
       this.$axios.$post(`/api/profhealthcares/${this.username}/email/send`, {
+        userTo: this.username,
+        userFrom: this.usernamePatient,
         subject: this.subject,
         message: this.message
       })

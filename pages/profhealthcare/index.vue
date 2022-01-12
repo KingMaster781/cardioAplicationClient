@@ -61,8 +61,7 @@ export default {
   created() {
     this.$axios
       .$put("/api/prescriptions/update", {})
-      .then(console.log("success"))
-      .catch(console.log("failed"));
+      .then();
   },
 };
 </script>

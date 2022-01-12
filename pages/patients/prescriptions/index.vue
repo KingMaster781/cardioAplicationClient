@@ -38,7 +38,7 @@
           </b-button>
         </template>
       </b-table>
-      <nuxt-link to="/patients">Back</nuxt-link>
+      <p align="center"><a class="primary" @click="$router.go(-1)">Voltar a Trás</a></p>
     </b-container>
   </div>
 </template>
