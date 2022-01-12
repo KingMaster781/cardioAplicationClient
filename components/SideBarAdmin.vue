@@ -33,7 +33,7 @@
                         </li>
                         <b-collapse id="ad" accordion="my-accordion" role="tabpanel">
                             <a class="nav-link" onmouseover="this.style.background='gray';" onmouseout="this.style.background='whitesmoke'" href="/admin/admins">Lista de Admins</a>
-                            <a class="nav-link" onmouseover="this.style.background='gray';" onmouseout="this.style.background='whitesmoke'" href="/admin/createAdmin">Criar um Admin</a>
+                            <a class="nav-link" onmouseover="this.style.background='gray';" onmouseout="this.style.background='whitesmoke'" href="/admin/admins/createAdmin">Criar um Admin</a>
                         </b-collapse>
 
                         <li class="nav-item">
